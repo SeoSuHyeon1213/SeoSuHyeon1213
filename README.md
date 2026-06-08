@@ -39,7 +39,7 @@
 
 | | 프로젝트 | 설명 |
 |--|--------|------|
-| ![VR](https://img.shields.io/badge/AR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
+| ![VR](https://img.shields.io/badge/VR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
 | ![미디어 아트](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) [🔗 보러가기](https://www.ansanart.com/lay2/bbs/S1T84C453/A/64/view.do?article_seq=357&cpage=1&rows=10&condition=&keyword=) |
 
 
