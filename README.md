@@ -59,10 +59,6 @@
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=seosuhyun&show_icons=true&theme=dark&bg_color=201E1F&title_color=FF4000&icon_color=FAAA8D&text_color=FEEFDD&border_color=FAAA8D)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=seosuhyun&layout=compact&theme=dark&bg_color=201E1F&title_color=FF4000&text_color=FEEFDD&border_color=FAAA8D)
-
 </div>
 
 ---
