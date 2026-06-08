@@ -20,7 +20,7 @@
 | 학교 | 전공 | 기간 |
 |------|------|------|
 | 한국폴리텍대학 광명융합기술교육원 | 증강현실과 | 2026 — 재학 중 |
-| 유원대학교 | 미디어콘텐츠학과 | ~ 2026 졸업 |
+| 유원대학교 | 미디어콘텐츠학과 | 2020 ~ 2026 졸업 |
 
 ---
 
@@ -28,8 +28,8 @@
 
 | 작품 | 설명 | 링크 |
 |------|------|------|
-| 아나모픽 미디어 아트 | 착시를 활용한 공간 미디어 설치 작품 | [🔗 보러가기](#) |
-| 단편 영화 — RE: BORN | 영상 연출 · 영화 음악 작업 포함 | [🔗 보러가기](#) |
+| 아나모픽 미디어 아트 | 착시를 활용한 공간 미디어 설치 작품 | [🔗 보러가기](#https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link) |
+| 단편 영화 — RE: BORN | 영상 연출 · 영화 음악 작업 포함 | [🔗 보러가기](#https://drive.google.com/file/d/1iJ0H7HB88rvByNNkMX4GXuiKVjGq4LlA/view?usp=drive_link) |
 
 ---
 
@@ -39,10 +39,9 @@
 
 | | 프로젝트 | 설명 |
 |--|--------|------|
-| ![AR](https://img.shields.io/badge/AR-50B2C0?style=flat-square&logoColor=white) | **Resonance** | VIRNECT Make AR 기반 서버룸 원격 모니터링 시스템 |
-| ![설치미술](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) |
-| ![게임](https://img.shields.io/badge/게임-FAAA8D?style=flat-square&logoColor=201E1F) | **게임 개발** | Unity 기반 인디게임 프로젝트 |
-| ![영상·음악](https://img.shields.io/badge/영상·음악-FEEFDD?style=flat-square&logoColor=201E1F) | **필름 컴포지션** | Suno AI · 영상 음악 작업 |
+| ![VR](https://img.shields.io/badge/AR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](#[https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
+| ![미디어 아트](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) [🔗 보러가기](#https://www.ansanart.com/lay2/bbs/S1T84C453/A/64/view.do?article_seq=357&cpage=1&rows=10&condition=&keyword=) |
+
 
 </div>
 
@@ -53,7 +52,6 @@
 ![Unity](https://img.shields.io/badge/Unity-201E1F?style=for-the-badge&logo=unity&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-FF4000?style=for-the-badge&logo=csharp&logoColor=white)
 ![Arduino](https://img.shields.io/badge/Arduino-FAAA8D?style=for-the-badge&logo=arduino&logoColor=201E1F)
-![HTML5](https://img.shields.io/badge/HTML5-50B2C0?style=for-the-badge&logo=html5&logoColor=white)
 ![Blender](https://img.shields.io/badge/Blender-FF4000?style=for-the-badge&logo=blender&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-201E1F?style=for-the-badge&logo=python&logoColor=FEEFDD)
 
