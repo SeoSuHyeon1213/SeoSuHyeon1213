@@ -6,7 +6,7 @@
 **미디어 아트 · AR/XR 개발 · 게임 · 영상 제작**
 인간과 기술의 경계를 탐구합니다.
 
-[![Instagram](https://img.shields.io/badge/Instagram-FF4000?style=for-the-badge&logo=instagram&logoColor=white)]([https://instagram.com/](https://www.instagram.com/ssh0622/))
+[![Instagram](https://img.shields.io/badge/Instagram-FF4000?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/ssh0622/)
 [![YouTube](https://img.shields.io/badge/YouTube-FF4000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f)
 [![Email](https://img.shields.io/badge/Email-FAAA8D?style=for-the-badge&logo=gmail&logoColor=201E1F)](mailto:giornogiobana1234@email.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/수현-서-879286396)
