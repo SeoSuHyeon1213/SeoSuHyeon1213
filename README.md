@@ -28,8 +28,8 @@
 
 | 작품 | 설명 | 링크 |
 |------|------|------|
-| 아나모픽 미디어 아트 | 착시를 활용한 공간 미디어 설치 작품 | [🔗 보러가기](#https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link) |
-| 단편 영화 — RE: BORN | 영상 연출 · 영화 음악 작업 포함 | [🔗 보러가기](#https://drive.google.com/file/d/1iJ0H7HB88rvByNNkMX4GXuiKVjGq4LlA/view?usp=drive_link) |
+| 아나모픽 미디어 아트 | 착시를 활용한 공간 미디어 설치 작품 | [🔗 보러가기](https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link) |
+| 단편 영화 — RE: BORN | 영상 연출 · 영화 음악 작업 포함 | [🔗 보러가기](https://drive.google.com/file/d/1iJ0H7HB88rvByNNkMX4GXuiKVjGq4LlA/view?usp=drive_link) |
 
 ---
 
@@ -39,8 +39,8 @@
 
 | | 프로젝트 | 설명 |
 |--|--------|------|
-| ![VR](https://img.shields.io/badge/AR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](#[https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
-| ![미디어 아트](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) [🔗 보러가기](#https://www.ansanart.com/lay2/bbs/S1T84C453/A/64/view.do?article_seq=357&cpage=1&rows=10&condition=&keyword=) |
+| ![VR](https://img.shields.io/badge/AR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
+| ![미디어 아트](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) [🔗 보러가기](https://www.ansanart.com/lay2/bbs/S1T84C453/A/64/view.do?article_seq=357&cpage=1&rows=10&condition=&keyword=) |
 
 
 </div>
