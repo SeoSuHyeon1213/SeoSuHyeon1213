@@ -53,7 +53,6 @@
 ![C#](https://img.shields.io/badge/C%23-FF4000?style=for-the-badge&logo=csharp&logoColor=white)
 ![Arduino](https://img.shields.io/badge/Arduino-FAAA8D?style=for-the-badge&logo=arduino&logoColor=201E1F)
 ![Blender](https://img.shields.io/badge/Blender-FF4000?style=for-the-badge&logo=blender&logoColor=white)
-![Python](https://img.shields.io/badge/Python-201E1F?style=for-the-badge&logo=python&logoColor=FEEFDD)
 
 ---
 
