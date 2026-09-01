@@ -15,8 +15,13 @@
 
 ---
 
-## 🎓 학력 사항
 <div align="center">
+
+
+## 🎓 학력 사항
+
+<div align="center">
+  
 | 학교 | 전공 | 기간 |
 |------|------|------|
 | 한국폴리텍대학 광명융합기술교육원 | 증강현실과 | 2026 — 재학 중 |
@@ -25,7 +30,9 @@
 ---
 
 ## 🎬 졸업 작품
+
 <div align="center">
+  
 | 작품 | 설명 | 링크 |
 |------|------|------|
 | 아나모픽 미디어 아트 | 착시를 활용한 공간 미디어 설치 작품 | [🔗 보러가기](https://drive.google.com/file/d/1bDgV5Xiu_zeMgyzOIuRXPN_PL6_HgSJH/view?usp=drive_link) |
