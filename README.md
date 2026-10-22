@@ -46,7 +46,7 @@
 
 | | 프로젝트 | 설명 |
 |--|--------|------|
-| 💻 | 전체 포트폴리오 | [🔗 보러가기](https://www.figma.com/design/9HbOzMrTil8OFvKXvu90pX/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=151-266&t=JPlUoyim5q3U0yBd-1) |
+| 💻 | 전체 포트폴리오 | [🔗 보러가기](https://www.figma.com/design/9HbOzMrTil8OFvKXvu90pX/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=0-1&t=ins5JlST360CwRQW-1) |
 | ![VR](https://img.shields.io/badge/VR-50B2C0?style=flat-square&logoColor=white) | **VR sword master** | [🔗 보러가기](https://youtu.be/ro0QMu31KsA?si=mJbNHDlnbE5MhfTi) |
 | ![미디어 아트](https://img.shields.io/badge/설치미술-FF4000?style=flat-square) | **자연과 인간의 대립** | Arduino × Unity 인터랙티브 전시 (2026 전시) [🔗 보러가기](https://www.ansanart.com/lay2/bbs/S1T84C453/A/64/view.do?article_seq=357&cpage=1&rows=10&condition=&keyword=) |
 
