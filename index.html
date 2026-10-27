@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>서수현 포트폴리오</title>
+<meta name="description" content="영상·XR·미디어아트 제작 과정을 이해하는 실무형 개발/기획 서수현의 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --fg: #f4f4f8;
+    --muted: #b9bccb;
+    --lav: #9298f6;
+    --mint: #7ff5d2;
+    --line: rgba(255,255,255,.85);
+    --card: rgba(255,255,255,.04);
+    --border: rgba(255,255,255,.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .l { color: var(--lav); font-style: normal; }
+  .m { color: var(--mint); font-style: normal; }
+  .wrap { width: min(1440px, 100% - 32px); margin-inline: auto; }
+
+  /* nav */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    background: rgba(0,0,0,.7); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-100%); transition: transform .35s;
+  }
+  nav.show { transform: none; }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  nav .brand { font-weight: 900; letter-spacing: .02em; }
+  nav ul { display: flex; gap: 22px; list-style: none; font-size: 14px; color: var(--muted); }
+  nav ul a:hover { color: var(--mint); }
+
+  /* hero */
+  .hero { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 60px 0; }
+  .hero .photo {
+    width: 240px; aspect-ratio: 292/391; margin: 0 auto 40px;
+    border-radius: 36px; overflow: hidden; background: #fff;
+    box-shadow: 0 0 80px rgba(146,152,246,.25);
+  }
+  .hero .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero h1 { font-size: clamp(40px, 7vw, 76px); font-weight: 900; letter-spacing: -.01em; line-height: 1.15; }
+  .hero hr { border: 0; height: 2px; background: var(--line); width: min(1470px, 92vw); margin: 44px auto; }
+  .socials { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  .social {
+    display: inline-flex; align-items: center; gap: 12px; padding: 12px 26px 12px 16px;
+    border: 1px solid var(--border); border-radius: 999px; background: var(--card);
+    font-weight: 700; transition: border-color .2s, transform .2s;
+  }
+  .social:hover { border-color: var(--mint); transform: translateY(-2px); }
+  .social svg { width: 34px; height: 34px; }
+  .scroll-hint { margin-top: 56px; font-size: 13px; color: var(--muted); letter-spacing: .2em; animation: bob 2s infinite; }
+  @keyframes bob { 50% { transform: translateY(6px); } }
+
+  section { padding: 110px 0; }
+  .sec-title { font-size: clamp(44px, 6vw, 80px); font-weight: 900; letter-spacing: .01em; margin-bottom: 70px; }
+
+  /* glow timeline */
+  .tl { position: relative; padding-left: 74px; }
+  .tl::before {
+    content: ""; position: absolute; left: 25px; top: 26px; bottom: -40px; width: 4px;
+    background: linear-gradient(#fff, #fff 85%, transparent); border-radius: 2px;
+    box-shadow: 0 0 12px rgba(255,255,255,.5);
+  }
+  .tl > .node { position: relative; }
+  .tl > .node + .node { margin-top: 56px; }
+  .tl > .node::before {
+    content: ""; position: absolute; left: -74px; top: 0; width: 54px; height: 54px; border-radius: 50%;
+    background: var(--dot, var(--lav)); box-shadow: 0 0 22px 4px color-mix(in srgb, var(--dot, var(--lav)) 55%, transparent);
+  }
+  .tl.mint { --dot: var(--mint); }
+  .tl.small { padding-left: 64px; }
+  .tl.small::before { left: 20px; }
+  .tl.small > .node::before { width: 42px; height: 42px; left: -64px; }
+
+  /* about */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .about h2 { font-size: clamp(28px, 3.2vw, 44px); font-weight: 900; line-height: 1.35; }
+  .about h2 .l { font-size: 1.2em; }
+  .about .pt { margin-top: 64px; font-size: 19px; }
+  .about .pt h3 { color: var(--lav); font-size: 22px; font-weight: 900; }
+  .about .pt + .pt { margin-top: 44px; }
+  .edu h3 { font-size: 24px; font-weight: 900; line-height: 1.35; }
+  .edu .date { font-size: 20px; }
+  .edu .item { margin-top: 20px; }
+  .edu .item h4 { font-size: 21px; font-weight: 500; }
+  .edu .item .date { font-size: 18px; }
+  .edu .item small { font-size: 14px; }
+  .edu .node:nth-child(1) .item h4, .edu .node:nth-child(1) .item small { color: var(--mint); }
+  .edu .node:nth-child(2) .item h4, .edu .node:nth-child(2) .item small { color: var(--lav); }
+  .edu .node:nth-child(2) { --dot: var(--mint); margin-top: 110px; }
+
+  /* project list */
+  .plist { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; }
+  .plist .node { display: flex; gap: 40px; align-items: center; min-height: 120px; }
+  .plist .node::before { top: 50%; transform: translateY(-50%); }
+  .plist .node + .node { margin-top: 44px; }
+  .picon {
+    flex: none; width: 120px; height: 120px; border-radius: 14px; overflow: hidden;
+    border: 2px solid rgba(146,152,246,.45); background: #111; transition: transform .25s, border-color .25s;
+  }
+  .picon img { width: 100%; height: 100%; object-fit: cover; }
+  .plist a:hover .picon { transform: scale(1.06); border-color: var(--mint); }
+  .plist h3 { font-size: 30px; font-weight: 500; line-height: 1.3; transition: color .2s; }
+  .plist a:hover h3 { color: var(--mint); }
+  .plist p { font-size: 16px; margin-top: 6px; }
+  .plist .tl:nth-child(1) p { color: var(--mint); }
+  .plist .tl:nth-child(2) p { color: var(--lav); }
+
+  /* project detail */
+  .proj { border-top: 1px solid var(--border); }
+  .phead { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 64px; }
+  .phead .title { display: flex; gap: 32px; align-items: center; }
+  .phead .picon { width: 128px; height: 128px; border-radius: 18px; border-color: rgba(255,255,255,.2); }
+  .phead .cat { font-size: 28px; font-weight: 700; }
+  .phead h2 { font-size: clamp(36px, 4.4vw, 60px); font-weight: 900; line-height: 1.15; }
+  .meta { font-size: 30px; font-weight: 900; display: grid; grid-template-columns: auto 1fr; gap: 6px 28px; align-items: center; }
+  .meta .tools { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 20px; font-weight: 500; }
+  .tool { display: inline-flex; align-items: center; gap: 10px; }
+  .tool img { width: 44px; height: 44px; border-radius: 10px; }
+  .pbody { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .pbody .node h3 { font-size: 22px; font-weight: 900; color: var(--lav); line-height: 1.4; }
+  .pbody .tl.mint .node h3 { color: var(--fg); }
+  .pbody .tl.mint .node:last-child h3 { color: var(--lav); }
+  .pbody p, .pbody li { font-size: 16.5px; color: #e9e9f0; }
+  .pbody p + p { margin-top: 14px; }
+  .spec { list-style: none; }
+  .spec li + li { margin-top: 10px; }
+  .spec b { display: block; font-weight: 700; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--card); font-size: 15px; font-weight: 500;
+    transition: border-color .2s, color .2s;
+  }
+  .btn:hover { border-color: var(--mint); color: var(--mint); }
+  .btn::after { content: "↗"; opacity: .7; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--mint); margin-top: 14px; background: #0b0b0f; }
+  .shots.three { grid-template-columns: repeat(3, 1fr); }
+  .shots button { all: unset; cursor: zoom-in; display: block; overflow: hidden; }
+  .shots img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s, filter .35s; }
+  .shots button:hover img { transform: scale(1.04); filter: brightness(1.1); }
+  .shots button:focus-visible { outline: 3px solid var(--lav); outline-offset: -3px; }
+
+  /* lightbox */
+  .lb { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.92); display: none; place-items: center; padding: 24px; cursor: zoom-out; }
+  .lb.open { display: grid; }
+  .lb img { max-height: 90vh; max-width: 94vw; border: 1px solid var(--border); }
+
+  footer { padding: 70px 0 90px; text-align: center; color: var(--muted); border-top: 1px solid var(--border); }
+  footer .socials { margin-bottom: 26px; }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s, transform .8s; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 1000px) {
+    .about, .plist, .phead, .pbody { grid-template-columns: 1fr; }
+    .plist { gap: 44px; }
+    .edu .node:nth-child(2) { margin-top: 56px; }
+    nav ul { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 72px 0; }
+    .sec-title { margin-bottom: 44px; }
+    .tl, .tl.small { padding-left: 48px; }
+    .tl::before, .tl.small::before { left: 14px; width: 3px; }
+    .tl > .node::before, .tl.small > .node::before { width: 30px; height: 30px; left: -48px; }
+    .plist .node { gap: 18px; }
+    .picon { width: 76px; height: 76px; }
+    .plist h3 { font-size: 21px; }
+    .plist p { font-size: 14px; }
+    .phead .title { gap: 18px; }
+    .phead .picon { width: 84px; height: 84px; }
+    .phead .cat { font-size: 17px; }
+    .meta { font-size: 21px; gap: 10px 16px; }
+    .meta .tools { font-size: 16px; gap: 10px 16px; }
+    .tool img { width: 34px; height: 34px; }
+    .about .pt { font-size: 17px; }
+    .hero .photo { width: 190px; }
+    .shots.three { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">SEO SUHYEON</a>
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#projects">PROJECT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="photo reveal"><img src="assets/profile.jpg" alt="서수현 프로필 사진"></div>
+    <h1 class="reveal">서수현 입니다</h1>
+    <hr>
+    <div class="socials reveal">
+      <a class="social" href="https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="9" fill="#ff0000"/><path d="M19 10l12 7-12 7z" fill="#fff"/></svg>YouTube
+      </a>
+      <a class="social" href="https://github.com/SeoSuHyeon1213" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub
+      </a>
+    </div>
+    <p class="scroll-hint">SCROLL ↓</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="reveal">
+      <h2>영상·XR·미디어아트 제작 과정을<br>이해하는 실무형<br><span class="l">개발/ 기획</span></h2>
+      <div class="pt">
+        <h3>기획부터 제작·전시까지 직접 경험</h3>
+        <p><span class="m">영상·3D·게임·XR 콘텐츠</span>를 직접 <span class="l">기획</span>하고 <span class="l">제작</span>하며, 아이디어가 실제 결과물로 완성되는 전 과정을 경험했습니다.
+        <span class="m">Unity, Unreal Engine, Figma</span> 등 다양한 제작 도구를 활용한 경험을 바탕으로 <span class="m">기획·디자인·개발</span> 직군의 업무를 이해하고, 요구사항과 피드백을 구체적인 제작 항목으로 정리할 수 있습니다.</p>
+      </div>
+      <div class="pt">
+        <h3>게임 × 미디어아트 융합 경험</h3>
+        <p>게임 개발 경험을 미디어아트에 접목해 관객의 반응에 따라 변화하는 <span class="m">인터랙티브 콘텐츠</span>를 기획·제작·전시했습니다.</p>
+      </div>
+    </div>
+    <div class="tl edu reveal">
+      <div class="node">
+        <h3>한국폴리텍대학교 광명 캠퍼스 증강현실시스템 학과</h3>
+        <div class="date">2026.03 ~</div>
+        <div class="item"><h4>버넥트(VERNECT) : 미래 내일 일경험 프로젝트형</h4><div class="date">2026.06 ~ 2026.07</div><small>미래내일 일경험 : UI/UX 디자인, Figma</small></div>
+        <div class="item"><h4>미디어아트 Blooming Nature : 안산문화재단 지원</h4><div class="date">2026.06.05 ~ 06.07</div><small>인터렉션 미디어아트 : Unity, C#, Arduino, C++</small></div>
+      </div>
+      <div class="node">
+        <h3>유원대학교 아산 캠퍼스 미디어콘텐츠 학과</h3>
+        <div class="date">2020.02 ~ 2026.02</div>
+        <div class="item"><h4>미디어아트 담다 : 인천아트플랫폼 지원</h4><div class="date">2025.04.29 ~ 05.04</div><small>미디어아트 : Blender, After Effects</small></div>
+        <div class="item"><h4>공연 기획 : 아산문화재단 지원</h4><div class="date">2023.09 ~ 2025.10</div><small>년도 마다 공연 기획 참여 : 음향, 녹화, 편집 등</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="sec-title reveal">PROJECT</h2>
+    <div class="plist" id="plist"></div>
+  </div>
+</section>
+
+<div id="details"></div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="socials">
+      <a class="social" href="https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="9" fill="#ff0000"/><path d="M19 10l12 7-12 7z" fill="#fff"/></svg>YouTube
+      </a>
+      <a class="social" href="https://github.com/SeoSuHyeon1213" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.210 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.750-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub
+      </a>
+    </div>
+    <p>© 2026 서수현 · Portfolio</p>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="스크린샷 확대"><img alt=""></div>
+
+<script>
+const T = {
+  unity: "Unity", affinity: "Affinity", figma: "Figma", vernect: "VERNECT MAKE &amp; VIEW",
+  codex: "CODEX", "claude-code": "Claude-Code", arduino: "Arduino", blender: "Blender",
+  aftereffects: "AfterEffect", resolume: "Resolume Arena"
+};
+
+const P = [
+  { id: "ar", col: 0, title: "AR 서버 모니터링", tags: "미래 내일 일경험, AR, UI/UX, 팀프로젝트",
+    cat: "AR", date: "2026.06~2026.07", contrib: "80%", role: "UI/UX 디자인", tools: ["vernect", "figma"],
+    desc: [
+      "미래내일 일경험 프로젝트입니다.<br>AR / VR 솔루션 기업인 버넥트(VERNECT)를 통하여 XR을 활용한 서버 모니터링 서비스를 개발했습니다.",
+      "버넥트에서 제공하는 자체 XR 개발 툴 Make &amp; View를 활용하여 제작되었습니다.<br>XR 콘텐츠로서의 장점을 극대화하기 위해 <span class='m'>글래스모피즘 디자인</span>을 사용하였습니다.",
+      "UI/UX 및 소개용 영상 편집에 참여하였습니다."],
+    spec: [
+      ["메인화면", "메인 화면을 통해 서버별 위치 표시(모니터링 이동) 및 서버 요약, 그래프 보기 이동이 가능합니다."],
+      ["서버요약", "서버 요약 버튼을 누르면 각 서버별 요약 상태나 <span class='m'>문제 발생 시 알림 사항이 출력</span>됩니다."],
+      ["서버 모니터링", "서버 모니터링을 통해 각 <span class='m'>부품별 상태</span>나 <span class='m'>알림 확인</span>이 가능합니다."],
+      ["그래프 보기", "그래프 보기 버튼을 누르면 연결된 URL로 넘어가 실시간 그래프 보기가 가능합니다."]],
+    links: [["영상 보러가기", "https://drive.google.com/file/d/1qlz5DM15gG5L4IgwBcGvtXmgHfTj86C5/view?usp=drive_link"],
+            ["발표자료", "https://drive.google.com/file/d/1sqAQS-LpIL_9WOZNqXQv76O9wQ1jralZ/view?usp=sharing"],
+            ["GitHub 보러가기", "https://github.com/yoooooungwoon/virnect-project"]],
+    retro: [
+      "처음 사용하는 노코드 기반 XR 제작 도구였기 때문에 서버 데이터를 처리하는 데 기술적 제약이 있었습니다. 이를 보완하기 위해 별도의 서버를 구축하고, 구현 과정과 결과를 GitHub에 문서화했습니다.",
+      "초기에는 기능별 색상 체계를 중심으로 UI를 설계했지만, XR 콘텐츠의 공간감과 시각적 특성이 충분히 드러나지 않는다는 피드백을 받았습니다. 이에 요구사항을 다시 정리하고 글래스모피즘 기반의 반투명 UI로 개선했습니다.",
+      "이 경험을 통해 <span class='m'>피드백을 구체적인 수정 항목으로 전환하는 방법</span>과, 기술적 제약 안에서도 클라이언트의 요구와 사용자 경험을 함께 고려해야 한다는 점을 배웠습니다."] },
+
+  { id: "ddang", col: 0, title: "땅따먹기", tags: "UNITY, 3D, 인터렉션 미디어아트, 아두이노",
+    cat: "MEDIA ART", date: "2026.05~2026.06", contrib: "100%", role: "기획/제작", tools: ["unity", "arduino", "claude-code"],
+    desc: [
+      "안산문화재단 장소 지원 미디어아트 Blooming Nature 전시 작품",
+      "관객이 버튼을 누르면 자연환경이 파괴되고, 버튼을 놓으면 도시가 자연에 잠식되는 인터랙티브 미디어아트입니다. 관객의 행동에 따라 상반된 환경 변화가 발생하도록 구성해 인간과 자연의 긴장 관계를 표현했습니다.",
+      "인간과 자연의 긴장되는 공존을 인터랙션으로 표현하여 조화와 균형에 초점을 맞춥니다."],
+    specText: [
+      "자연을 주제로 한 작품입니다. 인간과 자연의 조화를 주 메시지로 잡았습니다.",
+      "아두이노 우노를 사용하였습니다. 전시 PC에 연결하여 버튼을 누르면 <span class='m'>글리치 이펙트</span>와 함께 <span class='m'>식물들이 작아지다가 사라지는 형식</span>으로 자연이 파괴됩니다.",
+      "또한 버튼을 떼면 <span class='m'>건물들이 이끼에 잠식</span>된 것처럼 녹색 계열로 색이 바뀌면서 <span class='m'>점점 작아지다가 사라지는 형식</span>으로 파괴됩니다."],
+    links: [["영상 보러가기", "https://drive.google.com/file/d/1WXLNve88IDl6ERJrXHFr51y52tRxB5Qd/view?usp=sharing"]],
+    retro: [
+      "아두이노와 Unity를 연결하는 과정에서 입력이 반복되거나 화면 상태가 급격하게 전환되는 문제가 발생했습니다. 이를 해결하기 위해 버튼 입력을 단순 이벤트가 아닌 <span class='m'>상태 변화로 관리</span>하여 자연 파괴와 도시 잠식 연출이 안정적으로 전환되도록 구성했습니다.",
+      "여러 작품이 동시에 운영되는 전시 환경을 고려해 노트북, 아두이노, 버튼을 하나의 세트로 구성하고, 설치와 재실행이 쉽도록 정리했습니다. 전시 전에는 반복 입력, 장시간 실행, 장비 재연결 상황을 점검했습니다.",
+      "이를 통해 전시 콘텐츠에서는 시각적 완성도뿐 아니라 장시간 운영 안정성, 설치 편의성, 예외 상황 대응이 중요하다는 점을 배웠습니다."] },
+
+  { id: "neo", col: 0, title: "NEO ATLANTIS", tags: "Blender, 3D, 아나몰픽 미디어아트",
+    cat: "MEDIA ART", date: "2025.04~2025.05", contrib: "100%", role: "기획/제작", tools: ["blender"],
+    desc: [
+      "인천아트플랫폼 장소 지원 미디어아트 담다 전시 작품",
+      "\"네오 아틀란티스\"는 인간 기술과 자연의 복잡한 관계를 탐구하며, 버려진 인공물이 해양 생태계의 일부가 되는 과정을 보여주는 <span class='m'>아나몰픽 미디어아트</span>입니다."],
+    specText: [
+      "인천의 자연을 주제로 한 작품입니다.",
+      "이 작품은 인간이 만든 구조물이 해양 생물의 서식지로 변모하는 '바다의 공생' 현상을 시각적으로 재해석합니다.",
+      "‘인천항에 버려진 배나 잠수함이 해양 생태계에서 집 역할을 한다면 어떨까?’라는 생각으로 제작되었습니다.",
+      "아나몰픽 기법을 활용하여 관객에게 환경과 공존에 대한 다양한 시각적 관점을 제공하고 다층적 해석을 유도합니다."],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=49DHW_Ta86g"]],
+    retro: [
+      "한 달 남짓한 제작 기간 안에서 완성도를 확보하기 위해, 작품의 핵심이 되는 오브젝트는 직접 제작하고 배경과 보조 요소에는 검증된 무료 에셋을 활용했습니다. 또한 여러 제작 방식을 짧게 테스트한 뒤 작업 시간과 화면 완성도를 비교하여 최종 방식을 결정했습니다.",
+      "이를 통해 제한된 일정에서는 모든 요소를 동일하게 제작하기보다, <span class='m'>핵심 표현에 리소스를 집중</span>하고 대체 가능한 요소를 빠르게 구분하는 것이 중요하다는 점을 배웠습니다."] },
+
+  { id: "island-story", col: 0, title: "섬의 이야기", tags: "에프터 이펙트, Resolume Arena, 프로젝션 매핑",
+    cat: "MEDIA ART", date: "2025.04~2025.05", contrib: "100%", role: "기획/제작", tools: ["aftereffects", "resolume"],
+    desc: [
+      "인천아트플랫폼 장소 지원 미디어아트 담다 전시 작품",
+      "강화도의 선사시대 유물을 주제로 배경이 움직이는 <span class='m'>프로젝션 매핑</span> 작품입니다. 인류가 기록하지 못한 기억을 자연이 담아낸다는 '자연 속 고고학' 개념에 초점을 맞춥니다. 자연에 담긴 기억을 통해 잊혀진 인류 역사의 퍼즐 조각을 다시 맞추는 과정을 보여줍니다."],
+    specText: [
+      "인천의 자연을 주제로 한 작품입니다.",
+      "강화도 유적에 있는 고인돌 밑 유물들을 상상하여 만들었습니다.",
+      "작품 전시를 위해 사다리꼴 형태의 튀어나온 구조물을 만들었고 Resolume Arena로 각 면들을 매핑하였습니다.",
+      "측면 영상이 계속 움직이며 땅속으로 깊게 들어가는 착시를 주었습니다."],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=yTZH1Gy-Mn0&t=1s"]],
+    retro: [
+      "전체 전시 일정상 제작 가능 시간이 하루로 제한된 상황에서, 모든 요소를 세밀하게 구현하기보다 관람객에게 메시지를 빠르게 전달할 수 있는 핵심 요소를 우선했습니다.",
+      "한국 관람객에게 친숙한 선사시대 유물을 중심으로 오브젝트를 선정하고, 화면이 땅속으로 이동하는 듯한 착시와 프로젝션 매핑 연출에 제작 시간을 집중했습니다.",
+      "이를 통해 촉박한 일정에서는 제작 범위를 명확하게 정하고, 콘텐츠의 <span class='m'>핵심 메시지</span>와 관객에게 가장 먼저 전달될 요소에 우선순위를 두어야 한다는 점을 배웠습니다."] },
+
+  { id: "lastnight", col: 0, title: "LastNight", tags: "UNITY, TPS, Zombie",
+    cat: "GAME", date: "2026.06~2026.10", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
+    desc: [
+      "좀비 슈팅 게임입니다.",
+      "플레이어는 살아남기 위해 실내에 <span class='m'>바리케이드</span>를 설치하고 때론 위험을 감수하며 밖으로 나가 아이템을 얻어야 합니다.",
+      "5 웨이브마다 무기를 바꿀 기회를 얻고 10 웨이브마다 등장하는 대규모 공격에 대비해야 합니다."],
+    spec: [
+      ["난이도 증가", "웨이브가 쌓일수록 생성되는 좀비 수가 많아집니다."],
+      ["이벤트", "5 웨이브마다 무기를 바꿀 기회를 줍니다.<br>10 웨이브마다 대규모 공격이 옵니다."],
+      ["특수 좀비", "폭발형, 탱커형, 딜러형, 소환형 특수 좀비들이 10퍼센트 확률로 소환되어 긴장감을 줍니다."]],
+    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/LastNight"]],
+    retro: [
+      "특수 좀비와 무기의 능력치를 조정하면서 개별 수치의 변화가 전체 난이도에 큰 영향을 준다는 점을 경험했습니다. 반복적인 플레이 테스트를 통해 지나치게 강하거나 약한 요소를 조정하며, 실제 전투 상황을 기준으로 <span class='m'>밸런스를 검증</span>하는 과정의 중요성을 배웠습니다.",
+      "특수 좀비는 기존 좀비 클래스의 공통 동작을 <span class='m'>상속</span>하고, <span class='m'>인터페이스</span>로 특수 행동을 정의하여 구현했습니다. 소환형 좀비는 기존 생성 스크립트를 수정해 활용했으며, 생성된 좀비는 List로 관리하고 종류와 생성 위치는 무작위로 선택하여 전투에 변화를 주었습니다.",
+      "총기 시스템은 라이플용으로 작성한 클래스를 여러 총기에서 활용할 수 있도록 개선한 뒤, 이를 상속하여 샷건과 스나이퍼 라이플을 구현했습니다. 이 과정에서 새로운 기능을 추가할 때 공통 기능과 개별 동작을 구분하는 설계가 코드 재사용과 확장에 중요하다는 점을 배웠습니다.",
+      "바리케이드는 좀비의 진입을 막으면서 플레이어는 통과할 수 있도록 구성했습니다. 이를 통해 방어 구역을 확보하면서도 아이템을 얻기 위해 외부로 이동하도록 유도하고자 했습니다. 충돌 규칙과 같은 기술적 구현도 플레이어의 동선과 위험·보상 선택을 만드는 요소임을 경험했습니다."] },
+
+  { id: "island", col: 1, title: "ISLAND SURVIVOR", tags: "UNITY, 3D, 개인 프로젝트",
+    cat: "GAME", date: "2026.04~2026.07", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
+    desc: [
+      "탄막 회피 게임입니다.",
+      "컨셉은 해적이 되어 다른 해적들로부터 보물을 지키는 것을 목적으로 정했습니다. 해적선들이 플레이어 주변을 둘러싸 이동하며 포탄을 쏩니다.",
+      "탄막을 회피하며 생존 시간과 <span class='m'>근접 회피 점수</span>로 최고 기록에 도전하는 게임입니다."],
+    spec: [
+      ["난이도 증가", "플레이 타임이 길어질수록 탄막 스폰 시간이 점점 짧아지게 하였습니다."],
+      ["보너스 점수", "탄막에 영역을 만들어서 그 영역을 아슬아슬하게 피하면 점수를 추가로 얻게 하였습니다."]],
+    links: [["영상 보러가기", "https://youtu.be/SNWiZgGjCtA?si=AQ1lOK7xAG98iCaB"],
+            ["다운로드 (Google Play)", "https://play.google.com/store/apps/details?id=com.IslandSurvivor"]],
+    retro: [
+      "초기에는 플레이 시간이 길어져도 난이도 변화가 크지 않아 긴장감이 부족했습니다. 이를 개선하기 위해 시간이 지날수록 탄막 생성 간격이 짧아지도록 조정하고, 위험을 감수한 플레이에 보상을 제공하는 근접 회피 점수 시스템을 추가했습니다. 또한 보이지 않는 충돌벽만으로는 플레이 가능 영역을 사용자가 충분히 인지하기 어렵다고 판단했습니다. 이에 배경을 섬 형태로 구성하여 플레이어가 화면의 경계를 자연스럽게 이해하도록 유도했습니다.",
+      "이를 통해 의도한 사용자 경험을 만들기 위해서는 기능적인 제한뿐 아니라, 사용자가 직관적으로 이해할 수 있는 <span class='m'>시각적 안내</span>를 함께 설계해야 한다는 점을 배웠습니다."] },
+
+  { id: "vrsword", col: 1, title: "VR SWORD MASTER", tags: "UNITY, VR, 리듬 게임, 로컬 AI 활용",
+    cat: "VR", date: "2026.05~2026.06", contrib: "100%", role: "기획/개발", tools: ["unity", "claude-code"],
+    desc: [
+      "VR Beat Saber류의 리듬게임입니다.",
+      "목표는 음악에 맞추어 큐브가 생성되고 플레이어는 검으로 큐브를 베어 생존하는 것입니다."],
+    spec: [
+      ["곡 구성", "기본 4곡 구성으로 노래가 끝나면 자동으로 다음 노래가 재생됩니다."],
+      ["배경 전환", "1분마다 배경을 변경하게 하였습니다."],
+      ["체력 바 및 콤보 시스템", "VR 헤드셋에 체력바가 뜨게 하여 고개를 돌려도 체력 확인이 가능합니다. 또한 콤보 UI를 만들어서 콤보 표시가 됩니다."],
+      ["메인 화면 및 재시작", "체력을 모두 소진하면 게임 오버 창이 뜨며 재시작 또는 메인 화면 이동이 가능합니다."]],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=yNn9oyLzkqE"]],
+    retro: [
+      "초기 플레이 테스트에서 곡과 배경의 반복으로 인해 장시간 플레이 시 시각적·청각적 변화가 부족하다는 문제를 확인했습니다. 이를 개선하기 위해 <span class='m'>로컬 AI 모델</span>을 활용해 댄스 음악과 드럼앤베이스 등 서로 다른 장르의 음악을 제작하고, 1분마다 배경이 전환되도록 구성했습니다.",
+      "또한 플레이어가 현재 상태와 성과를 즉시 확인할 수 있도록 체력바와 콤보 UI를 추가했습니다. 제한된 기간 안에서 재미와 플레이 정보 전달에 직접 영향을 주는 항목을 우선적으로 선정하고 구현했습니다.",
+      "이를 통해 콘텐츠 개선 시에는 기능을 무작정 추가하기보다, 플레이 테스트에서 확인된 문제를 기준으로 <span class='m'>우선순위</span>를 정해야 한다는 점을 배웠습니다."] },
+
+  { id: "steamjump", col: 1, title: "STEAM JUMP", tags: "UNITY, 2D, 개인 프로젝트, 출시 예정",
+    cat: "GAME", date: "2026.06~2026.07", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
+    desc: [
+      "자동으로 이동하는 캐릭터를 조작해 발판과 장애물을 통과하고, 코인과 착지 보너스로 점수를 획득하는 2D 플랫포머입니다.",
+      "스팀펑크를 테마로 잡아 플레이어의 점프 훈련을 컨셉으로 하였습니다. 목표는 가장 오래 살아남으면서 코인을 획득하거나 플랫폼을 많이 밟는 등 점수 획득을 통하여 가장 높은 점수를 기록하는 것입니다."],
+    spec: [
+      ["코인 아이템", "점프 후 안전하게 착지 시 또는 코인 획득 시 점수가 추가됩니다."],
+      ["가시 패널티", "가시를 피하지 못하면 게임오버가 됩니다."],
+      ["난이도 증가", "플레이 시 20초씩 시간이 지날수록 이동 속도가 빨라져 숙련된 플레이를 요구하여 긴장감을 부여했습니다."],
+      ["코요테 타임", "플레이어의 편의를 위해 BoxCollider2D의 길이를 조절하여 점프 영역을 넉넉히 잡아 <span class='m'>코요테 타임</span>을 구현하였습니다."]],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=ZNgmrpRHqPk"]],
+    retro: [
+      "플레이 테스트 과정에서 발판 끝에서 점프했음에도 입력이 무시되는 듯한 불편이 반복적으로 확인되었습니다. 이를 개선 과제로 정의하고, BoxCollider2D의 판정 범위를 조절하여 코요테 타임을 구현했습니다. 수정 후 동일한 구간을 다시 테스트하며 조작감이 개선되었는지 확인했습니다.",
+      "이를 통해 사용자 피드백을 막연한 의견으로 남기지 않고, <span class='m'>구체적인 제작 항목으로 정의해 적용하고 검증</span>하는 과정을 경험했습니다."] },
+
+  { id: "trip", col: 1, title: "마음 따라 여행", tags: "Apps In Toss(앱인토스), ChatGPT(Codex)",
+    cat: "APPS IN TOSS", date: "2026.10", contrib: "100%", role: "기획/제작", tools: ["codex"], three: true,
+    desc: [
+      "한국관광공사 TourAPI 기반 앱인토스 미니앱",
+      "사용자가 고른 기분과 지역에 맞춰 국내 여행지를 추천하고, 추천 이유를 함께 보여주는 여행지 추천 서비스입니다.",
+      "<span class='m'>React · TypeScript · Vite</span>와 Apps in Toss Web Framework로 개발했습니다."],
+    spec: [
+      ["기분·지역 선택", "휴식, 기분 전환, 새로운 경험, 함께 4가지 기분과 여행 지역을 선택합니다."],
+      ["맞춤 추천", "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."],
+      ["상세 화면 및 찜", "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."],
+      ["데이터 구조", "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."]],
+    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/ait-trip"]],
+    retro: [
+      "무료 호스팅(Render) 환경에서 서버 응답이 지연되어 요청 시간이 초과되는 문제를 확인했습니다. 이를 '응답 지연 시 사용자 안내' 항목으로 정의하고, 지연 상황을 의도적으로 재현해 안내 문구가 실제 화면에 표시되는지 검증했습니다.",
+      "또한 API 설정값이 비어 있으면 샘플 데이터로 동작하도록 구성해 외부 API 상태와 관계없이 화면이 유지되도록 했습니다.",
+      "이를 통해 정상 흐름뿐 아니라 <span class='m'>실패 상황의 기대 동작까지 정의하고 검증</span>해야 한다는 점을 배웠습니다."] }
+];
+
+// project list (two glowing timelines)
+const cols = [document.createElement("div"), document.createElement("div")];
+cols[0].className = "tl small reveal";
+cols[1].className = "tl small mint reveal";
+P.forEach(p => {
+  const a = document.createElement("a");
+  a.className = "node"; a.href = "#p-" + p.id;
+  a.innerHTML = `<div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
+    <div><h3>${p.title}</h3><p>${p.tags}</p></div>`;
+  cols[p.col].appendChild(a);
+});
+document.getElementById("plist").append(...cols);
+
+// project detail sections
+const n = (h, body) => `<div class="node"><h3>${h}</h3>${body}</div>`;
+const ps = arr => arr.map(t => `<p>${t}</p>`).join("");
+document.getElementById("details").innerHTML = P.map(p => {
+  const shots = Array.from({ length: p.three ? 3 : 4 }, (_, i) =>
+    `<button aria-label="${p.title} 스크린샷 ${i + 1} 확대"><img src="assets/${p.id}-${i + 1}.jpg" alt="${p.title} 스크린샷 ${i + 1}" loading="lazy"></button>`).join("");
+  const spec = p.spec
+    ? `<ul class="spec">${p.spec.map(([b, t]) => `<li><b>-${b}</b>${t}</li>`).join("")}</ul>`
+    : ps(p.specText);
+  return `<section class="proj" id="p-${p.id}"><div class="wrap">
+    <div class="phead reveal">
+      <div class="title">
+        <div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
+        <div><div class="cat">${p.cat} – ${p.date}</div><h2>${p.title}</h2></div>
+      </div>
+      <div class="meta">
+        <span>기여도 ${p.contrib}</span><span>${p.role}</span>
+        <span>사용툴</span>
+        <div class="tools">${p.tools.map(t => `<span class="tool"><img src="assets/tool-${t}.png" alt="">${T[t]}</span>`).join("")}</div>
+      </div>
+    </div>
+    <div class="pbody">
+      <div class="tl small reveal">
+        ${n("설명", ps(p.desc))}
+        ${n("구성", spec)}
+        ${n("링크", `<div class="links">${p.links.map(([t, u]) => `<a class="btn" href="${u}" target="_blank" rel="noopener">${t}</a>`).join("")}</div>`)}
+      </div>
+      <div class="tl small mint reveal">
+        ${n("프로젝트 스크린샷", `<div class="shots${p.three ? " three" : ""}">${shots}</div>`)}
+        ${n("회고", ps(p.retro))}
+      </div>
+    </div>
+  </div></section>`;
+}).join("");
+
+// lightbox
+const lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+document.addEventListener("click", e => {
+  const b = e.target.closest(".shots button");
+  if (b) { const im = b.querySelector("img"); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add("open"); }
+});
+lb.addEventListener("click", () => lb.classList.remove("open"));
+document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+
+// nav + reveal
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("show", scrollY > innerHeight * .6), { passive: true });
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
