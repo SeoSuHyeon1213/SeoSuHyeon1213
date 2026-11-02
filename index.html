@@ -105,11 +105,13 @@
   .edu .node:nth-child(2) { --dot: var(--mint); margin-top: 110px; }
 
   /* project list */
-  .plist { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; }
+  .plist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 80px; }
   .plist .tl::before { top: 60px; }
   .plist .node { display: flex; gap: 40px; align-items: center; min-height: 120px; }
   .plist .node::before { top: 50%; transform: translateY(-50%); }
   .plist .node + .node { margin-top: 44px; }
+  .plist .summary { min-width: 0; }
+  .plist h3 { overflow-wrap: anywhere; }
   .picon {
     flex: none; width: 120px; height: 120px; border-radius: 14px; overflow: hidden;
     border: 2px solid rgba(146,152,246,.45); background: #111; transition: transform .25s, border-color .25s;
@@ -121,18 +123,26 @@
   .plist p { font-size: 16px; margin-top: 6px; }
   .plist .tl:nth-child(1) p { color: var(--mint); }
   .plist .tl:nth-child(2) p { color: var(--lav); }
+  .ptags { display: flex; flex-wrap: wrap; gap: 2px .35em; line-height: 1.6; }
+  .ptags span { max-width: 100%; overflow-wrap: anywhere; }
 
   /* project detail */
   .proj { border-top: 1px solid var(--border); }
-  .phead { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 64px; }
-  .phead .title { display: flex; gap: 32px; align-items: center; }
+  .phead { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: center; margin-bottom: 64px; }
+  .phead .title { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 8px 32px; align-items: center; }
+  .phead .title .picon { grid-row: 1 / 3; }
   .phead .picon { width: 128px; height: 128px; border-radius: 18px; border-color: rgba(255,255,255,.2); }
   .phead .cat { font-size: 28px; font-weight: 700; }
   .phead h2 { font-size: clamp(36px, 4.4vw, 60px); font-weight: 900; line-height: 1.15; }
+  .phead h2, .phead .cat { overflow-wrap: anywhere; }
+  .phead .ptags { grid-column: 2; color: var(--lav); font-size: 16px; }
   .meta { font-size: 30px; font-weight: 900; display: grid; grid-template-columns: auto 1fr; gap: 6px 28px; align-items: center; }
   .meta .tools { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 20px; font-weight: 500; }
   .tool { display: inline-flex; align-items: center; gap: 10px; }
   .tool img { width: 44px; height: 44px; border-radius: 10px; }
+  .meta > *, .meta .tools { min-width: 0; }
+  .tool { max-width: 100%; overflow-wrap: anywhere; }
+  .tool img { flex-shrink: 0; }
   .pbody { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
   .pbody .node h3 { font-size: 22px; font-weight: 900; color: var(--lav); line-height: 1.4; }
   .pbody .tl.mint .node h3 { color: var(--fg); }
@@ -185,9 +195,13 @@
     .picon { width: 76px; height: 76px; }
     .plist h3 { font-size: 21px; }
     .plist p { font-size: 14px; }
-    .phead .title { gap: 18px; }
-    .phead .picon { width: 84px; height: 84px; }
+    .phead { gap: 28px; margin-bottom: 40px; }
+    .phead .title { grid-template-columns: 64px minmax(0, 1fr); gap: 12px 16px; }
+    .phead .title .picon { grid-row: 1; }
+    .phead .picon { width: 64px; height: 64px; border-radius: 12px; }
     .phead .cat { font-size: 17px; }
+    .phead h2 { font-size: clamp(26px, 6.5vw, 36px); }
+    .phead .ptags { grid-column: 1 / -1; font-size: 14px; }
     .meta { font-size: 21px; gap: 10px 16px; }
     .meta .tools { font-size: 16px; gap: 10px 16px; }
     .tool img { width: 34px; height: 34px; }
@@ -291,7 +305,7 @@ const T = {
 };
 
 const P = [
-  { id: "ar", col: 0, title: "AR 서버 모니터링", tags: "미래 내일 일경험, AR, UI/UX, 팀프로젝트",
+  { id: "ar", col: 0, title: "AR 서버 모니터링", tags: "AR, 미래 내일 일경험, UI/UX, 팀프로젝트",
     cat: "AR", date: "2026.06~2026.07", contrib: "80%", role: "UI/UX 디자인", tools: ["vernect", "figma"],
     desc: [
       "미래내일 일경험 프로젝트입니다.<br>AR / VR 솔루션 기업인 버넥트(VERNECT)를 통하여 XR을 활용한 서버 모니터링 서비스를 개발했습니다.",
@@ -310,7 +324,7 @@ const P = [
       "초기에는 기능별 색상 체계를 중심으로 UI를 설계했지만, XR 콘텐츠의 공간감과 시각적 특성이 충분히 드러나지 않는다는 피드백을 받았습니다. 이에 요구사항을 다시 정리하고 글래스모피즘 기반의 반투명 UI로 개선했습니다.",
       "이 경험을 통해 <span class='m'>피드백을 구체적인 수정 항목으로 전환하는 방법</span>과, 기술적 제약 안에서도 클라이언트의 요구와 사용자 경험을 함께 고려해야 한다는 점을 배웠습니다."] },
 
-  { id: "ddang", col: 0, title: "땅따먹기", tags: "UNITY, 3D, 인터렉션 미디어아트, 아두이노",
+  { id: "ddang", col: 0, title: "땅따먹기", tags: "미디어아트, UNITY, 아두이노, 3D, 인터렉션 미디어아트",
     cat: "MEDIA ART", date: "2026.05~2026.06", contrib: "100%", role: "기획/제작", tools: ["unity", "arduino", "claude-code"],
     desc: [
       "안산문화재단 장소 지원 미디어아트 Blooming Nature 전시 작품",
@@ -326,7 +340,7 @@ const P = [
       "여러 작품이 동시에 운영되는 전시 환경을 고려해 노트북, 아두이노, 버튼을 하나의 세트로 구성하고, 설치와 재실행이 쉽도록 정리했습니다. 전시 전에는 반복 입력, 장시간 실행, 장비 재연결 상황을 점검했습니다.",
       "이를 통해 전시 콘텐츠에서는 시각적 완성도뿐 아니라 장시간 운영 안정성, 설치 편의성, 예외 상황 대응이 중요하다는 점을 배웠습니다."] },
 
-  { id: "neo", col: 0, title: "NEO ATLANTIS", tags: "Blender, 3D, 아나몰픽 미디어아트",
+  { id: "neo", col: 0, title: "NEO ATLANTIS", tags: "미디어아트, Blender, 3D, 아나몰픽 미디어아트",
     cat: "MEDIA ART", date: "2025.04~2025.05", contrib: "100%", role: "기획/제작", tools: ["blender"],
     desc: [
       "인천아트플랫폼 장소 지원 미디어아트 담다 전시 작품",
@@ -341,7 +355,7 @@ const P = [
       "한 달 남짓한 제작 기간 안에서 완성도를 확보하기 위해, 작품의 핵심이 되는 오브젝트는 직접 제작하고 배경과 보조 요소에는 검증된 무료 에셋을 활용했습니다. 또한 여러 제작 방식을 짧게 테스트한 뒤 작업 시간과 화면 완성도를 비교하여 최종 방식을 결정했습니다.",
       "이를 통해 제한된 일정에서는 모든 요소를 동일하게 제작하기보다, <span class='m'>핵심 표현에 리소스를 집중</span>하고 대체 가능한 요소를 빠르게 구분하는 것이 중요하다는 점을 배웠습니다."] },
 
-  { id: "island-story", col: 0, title: "섬의 이야기", tags: "에프터 이펙트, Resolume Arena, 프로젝션 매핑",
+  { id: "island-story", col: 0, title: "섬의 이야기", tags: "미디어아트, 에프터 이펙트, Resolume Arena, 프로젝션 매핑",
     cat: "MEDIA ART", date: "2025.04~2025.05", contrib: "100%", role: "기획/제작", tools: ["aftereffects", "resolume"],
     desc: [
       "인천아트플랫폼 장소 지원 미디어아트 담다 전시 작품",
@@ -357,7 +371,7 @@ const P = [
       "한국 관람객에게 친숙한 선사시대 유물을 중심으로 오브젝트를 선정하고, 화면이 땅속으로 이동하는 듯한 착시와 프로젝션 매핑 연출에 제작 시간을 집중했습니다.",
       "이를 통해 촉박한 일정에서는 제작 범위를 명확하게 정하고, 콘텐츠의 <span class='m'>핵심 메시지</span>와 관객에게 가장 먼저 전달될 요소에 우선순위를 두어야 한다는 점을 배웠습니다."] },
 
-  { id: "lastnight", col: 0, title: "LastNight", tags: "UNITY, TPS, Zombie",
+  { id: "lastnight", col: 0, title: "LastNight", tags: "게임, UNITY, TPS, Zombie, survival",
     cat: "GAME", date: "2026.06~2026.10", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
     desc: [
       "좀비 슈팅 게임입니다.",
@@ -374,7 +388,7 @@ const P = [
       "총기 시스템은 라이플용으로 작성한 클래스를 여러 총기에서 활용할 수 있도록 개선한 뒤, 이를 상속하여 샷건과 스나이퍼 라이플을 구현했습니다. 이 과정에서 새로운 기능을 추가할 때 공통 기능과 개별 동작을 구분하는 설계가 코드 재사용과 확장에 중요하다는 점을 배웠습니다.",
       "바리케이드는 좀비의 진입을 막으면서 플레이어는 통과할 수 있도록 구성했습니다. 이를 통해 방어 구역을 확보하면서도 아이템을 얻기 위해 외부로 이동하도록 유도하고자 했습니다. 충돌 규칙과 같은 기술적 구현도 플레이어의 동선과 위험·보상 선택을 만드는 요소임을 경험했습니다."] },
 
-  { id: "island", col: 1, title: "ISLAND SURVIVOR", tags: "UNITY, 3D, 개인 프로젝트",
+  { id: "island", col: 1, title: "ISLAND SURVIVOR", tags: "게임, UNITY, 3D, 개인 프로젝트",
     cat: "GAME", date: "2026.04~2026.07", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
     desc: [
       "탄막 회피 게임입니다.",
@@ -389,7 +403,7 @@ const P = [
       "초기에는 플레이 시간이 길어져도 난이도 변화가 크지 않아 긴장감이 부족했습니다. 이를 개선하기 위해 시간이 지날수록 탄막 생성 간격이 짧아지도록 조정하고, 위험을 감수한 플레이에 보상을 제공하는 근접 회피 점수 시스템을 추가했습니다. 또한 보이지 않는 충돌벽만으로는 플레이 가능 영역을 사용자가 충분히 인지하기 어렵다고 판단했습니다. 이에 배경을 섬 형태로 구성하여 플레이어가 화면의 경계를 자연스럽게 이해하도록 유도했습니다.",
       "이를 통해 의도한 사용자 경험을 만들기 위해서는 기능적인 제한뿐 아니라, 사용자가 직관적으로 이해할 수 있는 <span class='m'>시각적 안내</span>를 함께 설계해야 한다는 점을 배웠습니다."] },
 
-  { id: "vrsword", col: 1, title: "VR SWORD MASTER", tags: "UNITY, VR, 리듬 게임, 로컬 AI 활용",
+  { id: "vrsword", col: 1, title: "VR SWORD MASTER", tags: "VR, UNITY, 리듬 게임, 로컬 AI 활용",
     cat: "VR", date: "2026.05~2026.06", contrib: "100%", role: "기획/개발", tools: ["unity", "claude-code"],
     desc: [
       "VR Beat Saber류의 리듬게임입니다.",
@@ -405,7 +419,7 @@ const P = [
       "또한 플레이어가 현재 상태와 성과를 즉시 확인할 수 있도록 체력바와 콤보 UI를 추가했습니다. 제한된 기간 안에서 재미와 플레이 정보 전달에 직접 영향을 주는 항목을 우선적으로 선정하고 구현했습니다.",
       "이를 통해 콘텐츠 개선 시에는 기능을 무작정 추가하기보다, 플레이 테스트에서 확인된 문제를 기준으로 <span class='m'>우선순위</span>를 정해야 한다는 점을 배웠습니다."] },
 
-  { id: "steamjump", col: 1, title: "STEAM JUMP", tags: "UNITY, 2D, 개인 프로젝트, 출시 예정",
+  { id: "steamjump", col: 1, title: "STEAM JUMP", tags: "게임, UNITY, 2D, 개인 프로젝트, 출시 예정",
     cat: "GAME", date: "2026.06~2026.07", contrib: "100%", role: "기획/제작", tools: ["unity", "affinity"],
     desc: [
       "자동으로 이동하는 캐릭터를 조작해 발판과 장애물을 통과하고, 코인과 착지 보너스로 점수를 획득하는 2D 플랫포머입니다.",
@@ -415,7 +429,7 @@ const P = [
       ["가시 패널티", "가시를 피하지 못하면 게임오버가 됩니다."],
       ["난이도 증가", "플레이 시 20초씩 시간이 지날수록 이동 속도가 빨라져 숙련된 플레이를 요구하여 긴장감을 부여했습니다."],
       ["코요테 타임", "플레이어의 편의를 위해 BoxCollider2D의 길이를 조절하여 점프 영역을 넉넉히 잡아 <span class='m'>코요테 타임</span>을 구현하였습니다."]],
-    links: [["영상 보러가기", "https://www.youtube.com/watch?v=ZNgmrpRHqPk"], ["플레이 하기(Game Jolt)", "https://gamejolt.com/games/steamjump/1114480"]],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=ZNgmrpRHqPk"], ["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/SteamJump"], ["플레이 하기(Game Jolt)", "https://gamejolt.com/games/steamjump/1114480"]],
     retro: [
       "플레이 테스트 과정에서 발판 끝에서 점프했음에도 입력이 무시되는 듯한 불편이 반복적으로 확인되었습니다. 이를 개선 과제로 정의하고, BoxCollider2D의 판정 범위를 조절하여 코요테 타임을 구현했습니다. 수정 후 동일한 구간을 다시 테스트하며 조작감이 개선되었는지 확인했습니다.",
       "이를 통해 사용자 피드백을 막연한 의견으로 남기지 않고, <span class='m'>구체적인 제작 항목으로 정의해 적용하고 검증</span>하는 과정을 경험했습니다."] },
@@ -438,6 +452,10 @@ const P = [
       "이를 통해 정상 흐름뿐 아니라 <span class='m'>실패 상황의 기대 동작까지 정의하고 검증</span>해야 한다는 점을 배웠습니다."] }
 ];
 
+// Share the same ordered keywords between the project list and detail headers.
+const renderTags = p => `<p class="ptags" aria-label="작품 키워드">${p.tags.split(",").map((tag, i, tags) =>
+  `<span>${tag.trim()}${i < tags.length - 1 ? "," : ""}</span>`).join(" ")}</p>`;
+
 // project list (two glowing timelines)
 const cols = [document.createElement("div"), document.createElement("div")];
 cols[0].className = "tl small reveal";
@@ -446,7 +464,7 @@ P.forEach(p => {
   const a = document.createElement("a");
   a.className = "node"; a.href = "#p-" + p.id;
   a.innerHTML = `<div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
-    <div><h3>${p.title}</h3><p>${p.tags}</p></div>`;
+    <div class="summary"><h3>${p.title}</h3>${renderTags(p)}</div>`;
   cols[p.col].appendChild(a);
 });
 document.getElementById("plist").append(...cols);
@@ -465,6 +483,7 @@ document.getElementById("details").innerHTML = P.map(p => {
       <div class="title">
         <div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
         <div><div class="cat">${p.cat} – ${p.date}</div><h2>${p.title}</h2></div>
+        ${renderTags(p)}
       </div>
       <div class="meta">
         <span>기여도 ${p.contrib}</span><span>${p.role}</span>
