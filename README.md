@@ -1,8 +1,9 @@
-# 서수현 포트폴리오
+# 서수현 프로필
 
 **영상·XR·미디어아트 제작 과정을 이해하는 실무형 개발/기획**
 
-[YouTube](https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f) · [GitHub](https://github.com/SeoSuHyeon1213)
+[YouTube](https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f)
+[Portfolio](https://seosuhyeon1213.giornogiobana1234.workers.dev)
 
 ---
 
