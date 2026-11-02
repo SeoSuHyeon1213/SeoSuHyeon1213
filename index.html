@@ -106,6 +106,7 @@
 
   /* project list */
   .plist { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; }
+  .plist .tl::before { top: 60px; }
   .plist .node { display: flex; gap: 40px; align-items: center; min-height: 120px; }
   .plist .node::before { top: 50%; transform: translateY(-50%); }
   .plist .node + .node { margin-top: 44px; }
@@ -319,7 +320,7 @@ const P = [
       "자연을 주제로 한 작품입니다. 인간과 자연의 조화를 주 메시지로 잡았습니다.",
       "아두이노 우노를 사용하였습니다. 전시 PC에 연결하여 버튼을 누르면 <span class='m'>글리치 이펙트</span>와 함께 <span class='m'>식물들이 작아지다가 사라지는 형식</span>으로 자연이 파괴됩니다.",
       "또한 버튼을 떼면 <span class='m'>건물들이 이끼에 잠식</span>된 것처럼 녹색 계열로 색이 바뀌면서 <span class='m'>점점 작아지다가 사라지는 형식</span>으로 파괴됩니다."],
-    links: [["영상 보러가기", "https://drive.google.com/file/d/1WXLNve88IDl6ERJrXHFr51y52tRxB5Qd/view?usp=sharing"]],
+    links: [["영상 보러가기", "https://drive.google.com/file/d/1WXLNve88IDl6ERJrXHFr51y52tRxB5Qd/view?usp=sharing"], ["github보러가기", "https://github.com/SeoSuHyeon1213/hopscotch"]],
     retro: [
       "아두이노와 Unity를 연결하는 과정에서 입력이 반복되거나 화면 상태가 급격하게 전환되는 문제가 발생했습니다. 이를 해결하기 위해 버튼 입력을 단순 이벤트가 아닌 <span class='m'>상태 변화로 관리</span>하여 자연 파괴와 도시 잠식 연출이 안정적으로 전환되도록 구성했습니다.",
       "여러 작품이 동시에 운영되는 전시 환경을 고려해 노트북, 아두이노, 버튼을 하나의 세트로 구성하고, 설치와 재실행이 쉽도록 정리했습니다. 전시 전에는 반복 입력, 장시간 실행, 장비 재연결 상황을 점검했습니다.",
@@ -366,7 +367,7 @@ const P = [
       ["난이도 증가", "웨이브가 쌓일수록 생성되는 좀비 수가 많아집니다."],
       ["이벤트", "5 웨이브마다 무기를 바꿀 기회를 줍니다.<br>10 웨이브마다 대규모 공격이 옵니다."],
       ["특수 좀비", "폭발형, 탱커형, 딜러형, 소환형 특수 좀비들이 10퍼센트 확률로 소환되어 긴장감을 줍니다."]],
-    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/LastNight"]],
+    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/LastNight"], ["다운로드(Game Jolt)", "https://gamejolt.com/games/lastnight/1110428"]],
     retro: [
       "특수 좀비와 무기의 능력치를 조정하면서 개별 수치의 변화가 전체 난이도에 큰 영향을 준다는 점을 경험했습니다. 반복적인 플레이 테스트를 통해 지나치게 강하거나 약한 요소를 조정하며, 실제 전투 상황을 기준으로 <span class='m'>밸런스를 검증</span>하는 과정의 중요성을 배웠습니다.",
       "특수 좀비는 기존 좀비 클래스의 공통 동작을 <span class='m'>상속</span>하고, <span class='m'>인터페이스</span>로 특수 행동을 정의하여 구현했습니다. 소환형 좀비는 기존 생성 스크립트를 수정해 활용했으며, 생성된 좀비는 List로 관리하고 종류와 생성 위치는 무작위로 선택하여 전투에 변화를 주었습니다.",
@@ -430,7 +431,7 @@ const P = [
       ["맞춤 추천", "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."],
       ["상세 화면 및 찜", "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."],
       ["데이터 구조", "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."]],
-    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/ait-trip"]],
+    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/ait-trip"], ["플레이하기", "https://tossminiapp.com/d/aitmidtotrip/launch?referrer=appsintoss.common_module_share"]],
     retro: [
       "무료 호스팅(Render) 환경에서 서버 응답이 지연되어 요청 시간이 초과되는 문제를 확인했습니다. 이를 '응답 지연 시 사용자 안내' 항목으로 정의하고, 지연 상황을 의도적으로 재현해 안내 문구가 실제 화면에 표시되는지 검증했습니다.",
       "또한 API 설정값이 비어 있으면 샘플 데이터로 동작하도록 구성해 외부 API 상태와 관계없이 화면이 유지되도록 했습니다.",
