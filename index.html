@@ -120,6 +120,9 @@
   .plist a:hover .picon { transform: scale(1.06); border-color: var(--mint); }
   .plist h3 { font-size: 30px; font-weight: 500; line-height: 1.3; transition: color .2s; }
   .plist a:hover h3 { color: var(--mint); }
+  .plist .tl.mint .picon { border-color: var(--mint); }
+  .plist .tl.mint a:hover .picon { border-color: var(--lav); }
+  .plist .tl.mint a:hover h3 { color: var(--lav); }
   .plist p { font-size: 16px; margin-top: 6px; }
   .plist .tl:nth-child(1) p { color: var(--mint); }
   .plist .tl:nth-child(2) p { color: var(--lav); }
@@ -398,7 +401,7 @@ const P = [
       ["난이도 증가", "플레이 타임이 길어질수록 탄막 스폰 시간이 점점 짧아지게 하였습니다."],
       ["보너스 점수", "탄막에 영역을 만들어서 그 영역을 아슬아슬하게 피하면 점수를 추가로 얻게 하였습니다."]],
     links: [["영상 보러가기", "https://youtu.be/SNWiZgGjCtA?si=AQ1lOK7xAG98iCaB"],
-            ["다운로드 (Google Play)", "https://play.google.com/store/apps/details?id=com.IslandSurvivor"]],
+            ["다운로드 (Google Play)", "https://play.google.com/store/apps/details?id=com.IslandSurvivor"], ["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/Island-Survivor-backup"]],
     retro: [
       "초기에는 플레이 시간이 길어져도 난이도 변화가 크지 않아 긴장감이 부족했습니다. 이를 개선하기 위해 시간이 지날수록 탄막 생성 간격이 짧아지도록 조정하고, 위험을 감수한 플레이에 보상을 제공하는 근접 회피 점수 시스템을 추가했습니다. 또한 보이지 않는 충돌벽만으로는 플레이 가능 영역을 사용자가 충분히 인지하기 어렵다고 판단했습니다. 이에 배경을 섬 형태로 구성하여 플레이어가 화면의 경계를 자연스럽게 이해하도록 유도했습니다.",
       "이를 통해 의도한 사용자 경험을 만들기 위해서는 기능적인 제한뿐 아니라, 사용자가 직관적으로 이해할 수 있는 <span class='m'>시각적 안내</span>를 함께 설계해야 한다는 점을 배웠습니다."] },
@@ -413,7 +416,7 @@ const P = [
       ["배경 전환", "1분마다 배경을 변경하게 하였습니다."],
       ["체력 바 및 콤보 시스템", "VR 헤드셋에 체력바가 뜨게 하여 고개를 돌려도 체력 확인이 가능합니다. 또한 콤보 UI를 만들어서 콤보 표시가 됩니다."],
       ["메인 화면 및 재시작", "체력을 모두 소진하면 게임 오버 창이 뜨며 재시작 또는 메인 화면 이동이 가능합니다."]],
-    links: [["영상 보러가기", "https://www.youtube.com/watch?v=yNn9oyLzkqE"]],
+    links: [["영상 보러가기", "https://www.youtube.com/watch?v=yNn9oyLzkqE"], ["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/VRSwordMaster"]],
     retro: [
       "초기 플레이 테스트에서 곡과 배경의 반복으로 인해 장시간 플레이 시 시각적·청각적 변화가 부족하다는 문제를 확인했습니다. 이를 개선하기 위해 <span class='m'>로컬 AI 모델</span>을 활용해 댄스 음악과 드럼앤베이스 등 서로 다른 장르의 음악을 제작하고, 1분마다 배경이 전환되도록 구성했습니다.",
       "또한 플레이어가 현재 상태와 성과를 즉시 확인할 수 있도록 체력바와 콤보 UI를 추가했습니다. 제한된 기간 안에서 재미와 플레이 정보 전달에 직접 영향을 주는 항목을 우선적으로 선정하고 구현했습니다.",
