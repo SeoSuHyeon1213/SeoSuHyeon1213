@@ -7,7 +7,7 @@
 <meta name="description" content="영상·XR·미디어아트 제작 과정을 이해하는 실무형 개발/기획 서수현의 포트폴리오">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000;
@@ -45,8 +45,21 @@
   nav ul { display: flex; gap: 22px; list-style: none; font-size: 14px; color: var(--muted); }
   nav ul a:hover { color: var(--mint); }
 
+  /* neon mode toggle */
+  .neon-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px;
+    border: 2px solid #00e5ff; background: #050308; color: #f2ecff;
+    font: 700 13px "Space Mono", "Noto Sans KR", monospace; letter-spacing: .08em;
+    box-shadow: 4px 4px 0 #ff2bd6; transition: transform .15s, box-shadow .15s, color .15s;
+  }
+  .neon-btn:hover { color: #00e5ff; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #ff2bd6; }
+  .neon-btn:focus-visible { outline: 3px solid #ffb800; outline-offset: 3px; }
+  .neon-btn .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff2bd6; box-shadow: 0 0 8px #ff2bd6; }
+  .hero .neon-btn { position: absolute; top: 24px; right: 24px; z-index: 5; }
+  nav .neon-btn { padding: 5px 12px; font-size: 12px; box-shadow: 3px 3px 0 #ff2bd6; }
+
   /* hero */
-  .hero { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 60px 0; }
+  .hero { position: relative; min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 60px 0; }
   .hero .photo {
     width: 240px; aspect-ratio: 292/391; margin: 0 auto 40px;
     border-radius: 36px; overflow: hidden; background: #fff;
@@ -224,10 +237,12 @@
       <li><a href="#projects">PROJECT</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
+    <a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON</a>
   </div>
 </nav>
 
 <header class="hero" id="top">
+  <a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON MODE</a>
   <div>
     <div class="photo reveal"><img src="assets/profile.jpg" alt="서수현 프로필 사진"></div>
     <h1 class="reveal">서수현 입니다</h1>
