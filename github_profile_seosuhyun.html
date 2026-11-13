@@ -230,11 +230,17 @@
     button:focus-visible, a:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
     @media (max-width: 560px) { .dlg-body { padding: 1.1rem; } .dlg-shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-  </style>
+
+    .mode-navigation { display: flex; justify-content: flex-end; }
+    .default-mode-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--peach); border-radius: 999px; color: var(--peach); background: var(--panel); font: 700 12px var(--mono); letter-spacing: .04em; }
+    .default-mode-btn:hover { background: var(--peach); color: var(--panel); }
+    .default-mode-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+</style>
 </head>
 <body>
 
 <main class="page">
+  <nav class="mode-navigation" aria-label="포트폴리오 모드 선택"><a class="default-mode-btn" href="index.html" aria-label="기본 포트폴리오 모드로 돌아가기"><span aria-hidden="true">←</span> DEFAULT MODE</a></nav>
 
   <header class="gh-header">
     <div class="gh-avatar-row">
