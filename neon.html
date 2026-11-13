@@ -102,6 +102,9 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
   .mbody{padding:16px}
 }
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
+.neon-video-preview{display:flex;flex-direction:column;align-items:center;gap:16px;padding:16px;background:#151022;border:2px solid #3a2a66}
+.neon-video-preview iframe{display:block;width:min(100%,320px);aspect-ratio:9/16;border:2px solid #00e5ff;background:#050308;box-shadow:5px 5px 0 #ff2bd6;box-sizing:border-box}
+.neon-video-preview>a{padding:10px 16px;color:#f2ecff;text-decoration:none;font:700 12px 'Space Mono','Noto Sans KR',monospace;text-align:center}
 </style>
 </head>
 <body>
@@ -121,8 +124,8 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
         <a class="nlink" href="#about">About</a>
         <a class="nlink" href="#gallery">Gallery</a>
         <a class="nlink" href="#contact">Contact</a>
-        <a class="mode-btn" href="index.html" aria-label="기본 모드로 전환">◐ 기본 모드</a>
-        <a class="mode-btn" href="github_profile_seosuhyun.html" aria-label="캐주얼 모드로 전환">◌ 캐주얼 모드</a>
+        <a class="mode-btn" href="index.html" aria-label="Switch to default mode">◐ DEFAULT MODE</a>
+        <a class="mode-btn" href="github_profile_seosuhyun.html" aria-label="Switch to casual mode">◌ CASUAL MODE</a>
       </div>
     </nav>
 
@@ -244,8 +247,8 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
             YouTube
           </a>
           <a class="win retro-btn lbtn" href="#home" style="color:#050308;background:#ff2bd6">▲ TOP</a>
-          <a class="win retro-btn lbtn" href="index.html">◐ 기본 모드</a>
-          <a class="win retro-btn lbtn" href="github_profile_seosuhyun.html" aria-label="캐주얼 모드로 전환">◌ 캐주얼 모드</a>
+          <a class="win retro-btn lbtn" href="index.html">◐ DEFAULT MODE</a>
+          <a class="win retro-btn lbtn" href="github_profile_seosuhyun.html" aria-label="Switch to casual mode">◌ CASUAL MODE</a>
         </div>
       </div>
     </div>
@@ -498,7 +501,7 @@ var P = [
   ]
 },
   { id: "u1-shorts", tag: "video", file: "u1_shorts.mp4", title: "유원대학교 AI 홍보 쇼츠", date: "기획 약 2주 · 영상 제작 1일", role: "기획 · 캐릭터 디자인 · AI 영상 제작",
-    tools: ["Google Nano Banana", "Veo 2", "Veo 3"], imgs: [], videoUrl: "https://youtube.com/shorts/gBtzEUIGE3U",
+    tools: ["Google Nano Banana", "Veo 2", "Veo 3"], imgs: [], videoUrl: "https://youtube.com/shorts/gBtzEUIGE3U", videoId: "gBtzEUIGE3U",
     desc: "구 형태의 캐릭터와 수직 점프 연출로 대표 학과를 소개하는 유원대학교 홍보 쇼츠.",
     detail: ["유원대학교를 소개하는 세로형 홍보 영상입니다. 심플한 구성 안에서 학교와 학과 정보를 빠르게 전달하는 것을 목표로 기획했습니다.",
       "Google Nano Banana로 캐릭터 이미지를 만들고, Google의 AI 영상 모델 Veo 2와 Veo 3를 활용해 영상을 제작했습니다.",
@@ -572,7 +575,7 @@ function openDetail(id) {
     h += '<div style="' + grid + '">' + s.imgs.map(function (src, k) { return '<img src="' + src + '" alt="' + esc(s.title) + " 스크린샷 " + (k + 1) + '" style="' + imgSt + '">'; }).join("") + "</div>";
   }
   if (s.videoUrl) {
-    h += '<a href="' + s.videoUrl + '" target="_blank" rel="noopener" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;min-height:200px;text-decoration:none;border:2px solid #3a2a66;background:linear-gradient(160deg,#2a3fd6,#9a35c9 60%,#ff5fc1)"><span style="display:grid;place-items:center;width:56px;height:56px;border-radius:50%;border:2px solid #fff;color:#fff;font-size:20px">▶</span><span style="font:700 13px \'Space Mono\',monospace;color:#fff">YouTube Shorts에서 영상 보기 ↗</span></a>';
+    h += '<div class="neon-video-preview"><iframe src="https://www.youtube-nocookie.com/embed/' + esc(s.videoId) + '" title="' + esc(s.title) + '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe><a class="win retro-btn" href="' + esc(s.videoUrl) + '" target="_blank" rel="noopener">YouTube Shorts에서 영상 보기 ↗</a></div>';
   }
   h += '<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' + tagHtml(s.tag) + '<span style="font:400 12px \'Space Mono\',monospace;color:#b5a9d6">' + esc(s.date) + '</span></div>' +
     '<h2 style="margin:0;font-size:28px;font-weight:900;line-height:1.25">' + esc(s.title) + "</h2>" +
@@ -595,6 +598,7 @@ function openDetail(id) {
 function closeDetail() {
   if (!modal.classList.contains("open")) return;
   modal.classList.remove("open");
+  document.getElementById("dlgBody").innerHTML = "";
   document.body.style.overflow = "";
   if (lastFocus) lastFocus.focus();
 }
