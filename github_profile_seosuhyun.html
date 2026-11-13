@@ -118,7 +118,7 @@
       border-color: rgba(80,178,192,0.55); background: rgba(80,178,192,0.07); transform: translateY(-3px); outline: none;
     }
     .portfolio-card[hidden] { display: none; }
-    .thumb { aspect-ratio: 16/9; background: #111; overflow: hidden; position: relative; }
+    .thumb { width: 100%; min-width: 0; aspect-ratio: 16/9; flex-shrink: 0; background: #111; overflow: hidden; position: relative; }
     .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
     .portfolio-card:hover .thumb img { transform: scale(1.05); }
     .thumb .icon {
@@ -126,7 +126,7 @@
       border-radius: 10px; border: 2px solid var(--panel); overflow: hidden; background: #111;
     }
     .thumb { overflow: visible; }
-    .thumb > img { border-radius: 12px 12px 0 0; }
+    .thumb > img { position: absolute; inset: 0; border-radius: 12px 12px 0 0; }
     .thumb .icon img { width: 100%; height: 100%; object-fit: cover; }
     .card-body { padding: 1.5rem 1rem 1rem; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -176,9 +176,9 @@
     }
     dialog::backdrop { background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); }
     .dlg-shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #111; }
-    .dlg-shots.three { grid-template-columns: repeat(3, 1fr); }
+    .dlg-shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
     .dlg-shots img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
-    .dlg-shots.three img { aspect-ratio: 4/5; object-position: top; }
+    .dlg-shots.three img { height: auto; aspect-ratio: auto; object-fit: contain; object-position: top; }
     .dlg-body { padding: 1.4rem 1.6rem 1.6rem; display: flex; flex-direction: column; gap: 1rem; }
     .dlg-title { font-size: 24px; font-weight: 700; line-height: 1.3; }
     .dlg-sub { font-family: var(--mono); font-size: 12px; color: var(--peach); }
@@ -228,10 +228,10 @@
     .retro-steps p { line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
     body:has(dialog[open]) { overflow: hidden; }
     button:focus-visible, a:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
-    @media (max-width: 560px) { .dlg-body { padding: 1.1rem; } .dlg-shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .dlg-body { padding: 1.1rem; } .dlg-shots.three { grid-template-columns: 1fr; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
-    .mode-navigation { display: flex; justify-content: flex-end; }
+    .mode-navigation { display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
     .default-mode-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--peach); border-radius: 999px; color: var(--peach); background: var(--panel); font: 700 12px var(--mono); letter-spacing: .04em; }
     .default-mode-btn:hover { background: var(--peach); color: var(--panel); }
     .default-mode-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
@@ -240,7 +240,8 @@
 <body>
 
 <main class="page">
-  <nav class="mode-navigation" aria-label="포트폴리오 모드 선택"><a class="default-mode-btn" href="index.html" aria-label="기본 포트폴리오 모드로 돌아가기"><span aria-hidden="true">←</span> DEFAULT MODE</a></nav>
+  <nav class="mode-navigation" aria-label="포트폴리오 모드 선택"><a class="default-mode-btn" href="index.html" aria-label="기본 포트폴리오 모드로 돌아가기"><span aria-hidden="true">←</span> DEFAULT MODE</a>
+    <a class="default-mode-btn" href="neon.html" aria-label="네온 모드로 전환"><span aria-hidden="true">✦</span> NEON MODE</a></nav>
 
   <header class="gh-header">
     <div class="gh-avatar-row">
@@ -720,60 +721,113 @@ const P = [
     "specText": []
   },
   {
-    "id": "trip",
-    "tag": "app",
-    "title": "마음 따라 여행",
-    "date": "2026.10",
-    "role": "기획/제작 · 기여도 100%",
-    "three": true,
-    "tools": [
-      "React",
-      "TypeScript",
-      "Codex"
+  "id": "trip",
+  "tag": "app",
+  "title": "마음 따라 여행",
+  "date": "2026.10",
+  "role": "기획/제작 · 기여도 100%",
+  "three": true,
+  "tools": [
+    "React",
+    "TypeScript",
+    "Codex"
+  ],
+  "desc": "기분과 지역을 고르면 국내 여행지와 추천 이유를 보여주는 TourAPI 기반 앱인토스 미니앱.",
+  "spec": [
+    [
+      "기분·지역 선택",
+      "휴식, 기분 전환, 새로운 경험, 함께 4가지 기분과 여행 지역을 선택합니다."
     ],
-    "desc": "기분과 지역을 고르면 국내 여행지와 추천 이유를 보여주는 TourAPI 기반 앱인토스 미니앱.",
-    "spec": [
-      [
-        "기분·지역 선택",
-        "휴식, 기분 전환, 새로운 경험, 함께 4가지 기분과 여행 지역을 선택합니다."
-      ],
-      [
-        "맞춤 추천",
-        "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."
-      ],
-      [
-        "상세 화면 및 찜",
-        "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."
-      ],
-      [
-        "데이터 구조",
-        "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."
-      ]
+    [
+      "맞춤 추천",
+      "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."
     ],
-    "retro": [
-      "외부 API와 서버에 의존하는 서비스는 정상 응답뿐 아니라 지연과 설정 누락 상황에서의 기대 동작도 정의하고 검증해야 한다.",
-      "무료 호스팅 Render에서 서버 응답 지연으로 요청 시간이 초과되는 문제를 확인했다. 지연 상황을 재현해 안내 문구가 표시되는지 검증했으며, API 설정값이 비어 있을 때는 샘플 데이터로 동작하도록 구성했다.",
-      "따라서 이 서비스에서는 정상적인 여행지 추천 외에 응답 지연 안내와 설정 누락 시 대체 동작도 검증 대상에 포함해야 했다. 이후에도 실패 조건별 기대 동작을 먼저 정하고 실제 화면에서 확인하겠다."
+    [
+      "상세 화면 및 찜",
+      "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."
     ],
-    "links": [
-      [
-        "GitHub 보러가기",
-        "https://github.com/SeoSuHyeon1213/ait-trip",
-        "brand-github"
-      ],
-      [
-        "플레이하기",
-        "https://tossminiapp.com/d/aitmidtotrip/launch?referrer=appsintoss.common_module_share",
-        "external-link"
-      ]
+    [
+      "데이터 구조",
+      "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."
     ],
-    "detail": [
-      "한국관광공사 TourAPI 기반 앱인토스 미니앱",
-      "사용자가 고른 기분과 지역에 맞춰 국내 여행지를 추천하고, 추천 이유를 함께 보여주는 여행지 추천 서비스입니다.",
-      "<span class='m'>React · TypeScript · Vite</span>와 Apps in Toss Web Framework로 개발했습니다."
+    [
+      "지도",
+      "네이버 지도와 연결해 여행지 위치를 바로 확인할 수 있습니다."
+    ]
+  ],
+  "retro": [
+    "외부 API와 호스팅 환경에 의존하는 서비스는 정상 흐름뿐 아니라 지연·설정 누락 시의 기대 동작을 정의하고, 환경 변경 후에도 검증해야 한다.",
+    "Render의 서버 응답 지연으로 요청 시간이 초과되는 문제를 확인하고, 지연 상황을 재현해 사용자 안내 문구가 표시되는지 검증했다. API 설정값이 비어 있을 때는 샘플 데이터로 동작하도록 구성했다. 이후 Cloudflare로 호스팅을 이전하고 기능을 업데이트했으며, 같은 방식으로 기능 테스트를 진행했다.",
+    "따라서 이 서비스에서는 정상적인 추천뿐 아니라 실패 상황의 안내와 대체 동작도 검증해야 했다. 호스팅 이전과 기능 업데이트 후에도 같은 기준을 적용하며, 기대 동작을 먼저 정의하고 실제 동작을 확인하는 과정의 중요성을 배웠다."
+  ],
+  "links": [
+    [
+      "GitHub 보러가기",
+      "https://github.com/SeoSuHyeon1213/ait-trip",
+      "brand-github"
     ],
-    "specText": []
-  },
+    [
+      "플레이하기",
+      "https://tossminiapp.com/s/NGDrqIzx",
+      "external-link"
+    ]
+  ],
+  "detail": [
+    "한국관광공사 TourAPI 기반 앱인토스 미니앱",
+    "사용자가 고른 기분과 지역에 맞춰 국내 여행지를 추천하고, 추천 이유를 함께 보여주는 여행지 추천 서비스입니다.",
+    "<span class='m'>React · TypeScript · Vite</span>와 Apps in Toss Web Framework로 개발했습니다."
+  ],
+  "specText": []
+},
+  {
+  "id": "mythos",
+  "tag": "app",
+  "title": "신화 탐색",
+  "date": "2026.10",
+  "role": "기획/제작 · 기여도 100%",
+  "tools": [
+    "Claude Code"
+  ],
+  "desc": "신화와 판타지의 신·사건·서사시를 검색하고, 별칭과 연관 정보를 따라 탐색하는 사전 서비스.",
+  "detail": [
+    "앱인토스로 개발한 신화 및 판타지 검색 사전 서비스입니다.",
+    "그리스·로마, 이집트, 게르만·북유럽, 메소포타미아, 일본 신화의 신과 사건, 각 지역의 서사시와 판타지의 주요 요소를 검색할 수 있습니다.",
+    "앱인토스뿐 아니라 웹브라우저에서도 접속할 수 있습니다."
+  ],
+  "spec": [
+    [
+      "종류별 테마",
+      "각 지역의 신화와 판타지 태그에 맞는 전용 테마 디자인을 적용했습니다."
+    ],
+    [
+      "이름·별칭 검색",
+      "시대나 국가에 따라 달라진 신들의 이름을 함께 확인할 수 있습니다."
+    ],
+    [
+      "연관 정보 탐색",
+      "검색한 항목과 연결된 다른 정보를 함께 살펴볼 수 있습니다."
+    ]
+  ],
+  "retro": [
+    "운영 중인 서비스의 데이터 변경은 이용자의 접속에 미치는 영향을 줄이도록 별도 환경에서 검증한 뒤 반영해야 한다.",
+    "Cloudflare를 통한 첫 배포에서 배포 시스템을 이해하는 데 집중했다. 신화 데이터를 JSON 파일로 저장해 변경할 때마다 서버를 다시 빌드해야 했으므로, 이용자의 접속에 미치는 영향을 줄이기 위해 별도 테스트 환경에서 데이터 출력을 확인하고 준비가 끝난 뒤 서버에 반영했다.",
+    "따라서 이 서비스에서는 데이터 수정과 검증을 운영 반영 단계와 분리해야 했다. 이 경험을 통해 개발 과정이 이용자에게 미치는 영향을 고려하고, 별도 환경에서 확인한 변경만 배포하는 작업 기준을 배웠다."
+  ],
+  "links": [
+    [
+      "GitHub 보러가기",
+      "https://github.com/SeoSuHyeon1213/ait-mythos",
+      "brand-github"
+    ],
+    [
+      "플레이하기",
+      "https://tossminiapp.com/s/RtBmZGor",
+      "external-link"
+    ]
+  ],
+  "three": true,
+  "specText": []
+},
   {
     "id": "u1-shorts",
     "tag": "video",
@@ -831,7 +885,7 @@ grid.innerHTML = P.map((p, i) => `
   <article class="portfolio-card" data-tag="${p.tag}" data-i="${i}" tabindex="0" role="button" aria-label="${p.title} 자세히 보기">
     <div class="thumb${p.videoId ? " film-thumb" : ""}">
       ${p.videoId ? `<div class="film-poster"><span>AI SHORT FILM</span><strong>유원대학교</strong><em>캐릭터로 전하는 학교 이야기</em><span class="film-play" aria-hidden="true">▶</span></div>` : `<img src="assets/${p.id}-1.jpg" alt="" loading="lazy" style="${p.three ? "object-position:top" : ""}">
-      <div class="icon"><img src="assets/${p.id}-icon.png" alt=""></div>`}
+      <div class="icon"><img src="assets/${p.id}-icon.jpg" alt=""></div>`}
     </div>
     <div class="card-body">
       <div class="meta-line"><span class="portfolio-tag ${TAGS[p.tag][1]}">${TAGS[p.tag][0]}</span><span class="date">${p.date}</span></div>

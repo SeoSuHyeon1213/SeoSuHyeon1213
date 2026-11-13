@@ -179,7 +179,8 @@
   .btn:hover { border-color: var(--mint); color: var(--mint); }
   .btn::after { content: "↗"; opacity: .7; }
   .shots { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--mint); margin-top: 14px; background: #0b0b0f; }
-  .shots.three { grid-template-columns: repeat(3, 1fr); }
+  .shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .shots.three img { height: auto; object-fit: contain; }
   .shots button { all: unset; cursor: zoom-in; display: block; overflow: hidden; }
   .shots img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s, filter .35s; }
   .shots button:hover img { transform: scale(1.04); filter: brightness(1.1); }
@@ -474,22 +475,110 @@ const P = [
       "플레이 테스트 과정에서 발판 끝에서 점프했음에도 입력이 무시되는 듯한 불편이 반복적으로 확인되었습니다. 이를 개선 과제로 정의하고, BoxCollider2D의 판정 범위를 조절하여 코요테 타임을 구현했습니다. 수정 후 동일한 구간을 다시 테스트하며 조작감이 개선되었는지 확인했습니다.",
       "이를 통해 사용자 피드백을 막연한 의견으로 남기지 않고, <span class='m'>구체적인 제작 항목으로 정의해 적용하고 검증</span>하는 과정을 경험했습니다."] },
 
-  { id: "trip", col: 1, title: "마음 따라 여행", tags: "Apps In Toss(앱인토스), ChatGPT(Codex)",
-    cat: "APPS IN TOSS", date: "2026.10", contrib: "100%", role: "기획/제작", tools: ["codex"], three: true,
-    desc: [
-      "한국관광공사 TourAPI 기반 앱인토스 미니앱",
-      "사용자가 고른 기분과 지역에 맞춰 국내 여행지를 추천하고, 추천 이유를 함께 보여주는 여행지 추천 서비스입니다.",
-      "<span class='m'>React · TypeScript · Vite</span>와 Apps in Toss Web Framework로 개발했습니다."],
-    spec: [
-      ["기분·지역 선택", "휴식, 기분 전환, 새로운 경험, 함께 4가지 기분과 여행 지역을 선택합니다."],
-      ["맞춤 추천", "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."],
-      ["상세 화면 및 찜", "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."],
-      ["데이터 구조", "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."]],
-    links: [["GitHub 보러가기", "https://github.com/SeoSuHyeon1213/ait-trip"], ["플레이하기", "https://tossminiapp.com/d/aitmidtotrip/launch?referrer=appsintoss.common_module_share"]],
-    retro: [
-      "무료 호스팅(Render) 환경에서 서버 응답이 지연되어 요청 시간이 초과되는 문제를 확인했습니다. 이를 '응답 지연 시 사용자 안내' 항목으로 정의하고, 지연 상황을 의도적으로 재현해 안내 문구가 실제 화면에 표시되는지 검증했습니다.",
-      "또한 API 설정값이 비어 있으면 샘플 데이터로 동작하도록 구성해 외부 API 상태와 관계없이 화면이 유지되도록 했습니다.",
-      "이를 통해 정상 흐름뿐 아니라 <span class='m'>실패 상황의 기대 동작까지 정의하고 검증</span>해야 한다는 점을 배웠습니다."] }
+  {
+  "id": "trip",
+  "col": 1,
+  "title": "마음 따라 여행",
+  "tags": "Apps In Toss(앱인토스), ChatGPT(Codex)",
+  "cat": "APPS IN TOSS",
+  "date": "2026.10",
+  "contrib": "100%",
+  "role": "기획/제작",
+  "tools": [
+    "codex"
+  ],
+  "three": true,
+  "desc": [
+    "한국관광공사 TourAPI 기반 앱인토스 미니앱",
+    "사용자가 고른 기분과 지역에 맞춰 국내 여행지를 추천하고, 추천 이유를 함께 보여주는 여행지 추천 서비스입니다.",
+    "<span class='m'>React · TypeScript · Vite</span>와 Apps in Toss Web Framework로 개발했습니다."
+  ],
+  "spec": [
+    [
+      "기분·지역 선택",
+      "휴식, 기분 전환, 새로운 경험, 함께 4가지 기분과 여행 지역을 선택합니다."
+    ],
+    [
+      "맞춤 추천",
+      "기분별 테마(자연공원·바다·박물관·테마파크 등)에 맞는 여행지와 추천 이유를 제공합니다."
+    ],
+    [
+      "상세 화면 및 찜",
+      "여행지 상세 정보를 확인하고, 찜 저장·해제와 찜 목록 확인이 가능합니다."
+    ],
+    [
+      "데이터 구조",
+      "DataSource → DTO → Mapper → Repository로 분리하고, API 인증키는 서버에서만 관리합니다."
+    ],
+    [
+      "지도",
+      "네이버 지도와 연결해 여행지 위치를 바로 확인할 수 있습니다."
+    ]
+  ],
+  "links": [
+    [
+      "GitHub 보러가기",
+      "https://github.com/SeoSuHyeon1213/ait-trip"
+    ],
+    [
+      "플레이하기",
+      "https://tossminiapp.com/s/NGDrqIzx"
+    ]
+  ],
+  "retro": [
+    "무료 호스팅(Render) 환경에서 서버 응답 지연으로 요청 시간이 초과되는 문제를 확인했습니다. 이를 응답 지연 시 사용자 안내 항목으로 정의하고, 지연 상황을 의도적으로 재현해 안내 문구가 실제 화면에 표시되는지 검증했습니다.",
+    "API 설정값이 비어 있을 때는 샘플 데이터로 동작하도록 구성했습니다. 이후 Cloudflare로 호스팅을 이전하고 기능을 업데이트했으며, 같은 방식으로 기능 테스트를 진행했습니다.",
+    "이를 통해 정상 흐름뿐 아니라 실패 상황의 기대 동작까지 정의하고 검증해야 하며, 호스팅 환경이나 기능이 바뀐 뒤에도 같은 기준으로 확인해야 한다는 점을 배웠습니다."
+  ]
+},
+  {
+  "id": "mythos",
+  "col": 1,
+  "title": "신화 탐색",
+  "tags": "Apps In Toss(앱인토스), 신화·판타지 사전, Claude Code",
+  "cat": "APPS IN TOSS",
+  "date": "2026.10",
+  "contrib": "100%",
+  "role": "기획/제작",
+  "tools": [
+    "claude-code"
+  ],
+  "three": true,
+  "desc": [
+    "앱인토스로 개발한 신화 및 판타지 검색 사전 서비스입니다.",
+    "그리스·로마, 이집트, 게르만·북유럽, 메소포타미아, 일본 신화의 신과 사건, 각 지역의 서사시와 판타지의 주요 요소를 검색할 수 있습니다.",
+    "앱인토스뿐 아니라 웹브라우저에서도 접속할 수 있습니다."
+  ],
+  "spec": [
+    [
+      "종류별 테마",
+      "각 지역의 신화와 판타지 태그에 맞는 전용 테마 디자인을 적용했습니다."
+    ],
+    [
+      "이름·별칭 검색",
+      "시대나 국가에 따라 달라진 신들의 이름을 함께 확인할 수 있습니다."
+    ],
+    [
+      "연관 정보 탐색",
+      "검색한 항목과 연결된 다른 정보를 함께 살펴볼 수 있습니다."
+    ]
+  ],
+  "links": [
+    [
+      "GitHub 보러가기",
+      "https://github.com/SeoSuHyeon1213/ait-mythos"
+    ],
+    [
+      "플레이하기",
+      "https://tossminiapp.com/s/RtBmZGor"
+    ]
+  ],
+  "retro": [
+    "Cloudflare를 통해 처음 배포한 서비스로, 배포 시스템을 이해하는 데 중점을 두었습니다. 신화 데이터를 JSON 파일로 저장해 데이터 변경 시 서버를 다시 빌드해야 했습니다.",
+    "이용자의 접속에 미치는 영향을 줄이기 위해 별도 테스트 환경에서 데이터 출력을 확인하고, 준비가 완료된 변경만 서버에 반영했습니다.",
+    "이를 통해 개발 과정이 이용자에게 미치는 영향을 고려하고, 개발·검증과 운영 반영을 분리하는 방법의 중요성을 배웠습니다."
+  ]
+}
 ];
 
 // Share the same ordered keywords between the project list and detail headers.
@@ -503,7 +592,7 @@ cols[1].className = "tl small mint reveal";
 P.forEach(p => {
   const a = document.createElement("a");
   a.className = "node"; a.href = "#p-" + p.id;
-  a.innerHTML = `<div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
+  a.innerHTML = `<div class="picon"><img src="assets/${p.id}-icon.jpg" alt=""></div>
     <div class="summary"><h3>${p.title}</h3>${renderTags(p)}</div>`;
   cols[p.col].appendChild(a);
 });
@@ -521,14 +610,14 @@ document.getElementById("details").innerHTML = P.map(p => {
   return `<section class="proj" id="p-${p.id}"><div class="wrap">
     <div class="phead reveal">
       <div class="title">
-        <div class="picon"><img src="assets/${p.id}-icon.png" alt=""></div>
+        <div class="picon"><img src="assets/${p.id}-icon.jpg" alt=""></div>
         <div><div class="cat">${p.cat} – ${p.date}</div><h2>${p.title}</h2></div>
         ${renderTags(p)}
       </div>
       <div class="meta">
         <span>기여도 ${p.contrib}</span><span>${p.role}</span>
         <span>사용툴</span>
-        <div class="tools">${p.tools.map(t => `<span class="tool"><img src="assets/tool-${t}.png" alt="">${T[t]}</span>`).join("")}</div>
+        <div class="tools">${p.tools.map(t => `<span class="tool"><img src="assets/tool-${t}.jpg" alt="">${T[t]}</span>`).join("")}</div>
       </div>
     </div>
     <div class="pbody">
