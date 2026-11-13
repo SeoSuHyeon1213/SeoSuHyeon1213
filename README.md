@@ -15,7 +15,7 @@
 ## 🏫학력 및 경력
 
 **한국폴리텍대학교 광명 캠퍼스 증강현실시스템 학과** (2026.03 ~)
-- 버넥트(VERNECT) 미래내일 일경험 프로젝트형 (2026.05 ~ 2026.07) — UI/UX 디자인, Figma
+- 버넥트(VIRNECT) 미래내일 일경험 프로젝트형 (2026.05 ~ 2026.07) — UI/UX 디자인, Figma
 - 미디어아트 Blooming Nature, 안산문화재단 지원 (2026.06.05 ~ 06.07) — 인터랙션 미디어아트: Unity, C#, Arduino, C++
 
 **유원대학교 아산 캠퍼스 미디어콘텐츠 학과** (2020.02 ~ 2026.02)
@@ -28,7 +28,7 @@
 
 | 프로젝트 | 분야 | 기간 | 기여도 / 역할 | 사용툴 |
 |---|---|---|---|---|
-| [AR 서버 모니터링](https://drive.google.com/file/d/1qlz5DM15gG5L4IgwBcGvtXmgHfTj86C5/view?usp=sharing) | AR | 2026.06 ~ 07 | 80% / UI/UX 디자인 | VERNECT Make & View, Figma |
+| [AR 서버 모니터링](https://drive.google.com/file/d/1qlz5DM15gG5L4IgwBcGvtXmgHfTj86C5/view?usp=sharing) | AR | 2026.06 ~ 07 | 80% / UI/UX 디자인 | VIRNECT Make & View, Figma |
 | [땅따먹기](https://drive.google.com/file/d/1WXLNve88IDl6ERJrXHFr51y52tRxB5Qd/view?usp=sharing) | Media Art | 2026.05 ~ 06 | 100% / 기획·제작 | Unity, Arduino, Claude Code |
 | [NEO ATLANTIS](https://youtu.be/49DHW_Ta86g) | Media Art | 2025.04 ~ 05 | 100% / 기획·제작 | Blender |
 | [섬의 이야기](https://youtu.be/yTZH1Gy-Mn0) | Media Art | 2025.04 ~ 05 | 100% / 기획·제작 | After Effects, Resolume Arena |
@@ -39,7 +39,7 @@
 | [마음 따라 여행](https://tossminiapp.com/s/NGDrqIzx) | Apps in Toss | 2026.10 | 100% / 기획·제작 | Codex |
 
 ### 📱AR 서버 모니터링
-버넥트(VERNECT)와 함께한 미래내일 일경험 팀 프로젝트로, XR 기반 서버 모니터링 서비스입니다. 버넥트의 XR 개발 툴 Make & View로 제작했고, 글래스모피즘 UI를 적용했습니다. 저는 UI/UX와 소개 영상 편집을 맡았습니다.
+버넥트(VIRNECT)와 함께한 미래내일 일경험 팀 프로젝트로, XR 기반 서버 모니터링 서비스입니다. 버넥트의 XR 개발 툴 Make & View로 제작했고, 글래스모피즘 UI를 적용했습니다. 저는 UI/UX와 소개 영상 편집을 맡았습니다.
 - **구성:** 메인화면(서버 위치·요약), 서버 요약(상태·알림), 서버 모니터링(부품별 상태), 실시간 그래프 보기
 - **회고:** 노코드 툴의 제약은 별도 서버를 구축하고 그 과정을 GitHub에 문서화해 보완했습니다. "공간감이 부족하다"는 피드백을 받아 반투명 UI로 개선하면서, 피드백을 구체적인 수정 항목으로 바꾸는 법을 배웠습니다.
 - [영상](https://drive.google.com/file/d/1qlz5DM15gG5L4IgwBcGvtXmgHfTj86C5/view?usp=drive_link) · [발표자료](https://drive.google.com/file/d/1sqAQS-LpIL_9WOZNqXQv76O9wQ1jralZ/view?usp=sharing) · [GitHub](https://github.com/yoooooungwoon/virnect-project)
