@@ -76,7 +76,9 @@
   }
   .social:hover { border-color: var(--mint); transform: translateY(-2px); }
   .social svg { width: 34px; height: 34px; }
-  .scroll-hint { margin-top: 56px; font-size: 13px; color: var(--muted); letter-spacing: .2em; animation: bob 2s infinite; }
+  .scroll-hint { display: inline-block; margin-top: 56px; padding: 10px 16px; font-size: 13px; color: var(--muted); letter-spacing: .2em; animation: bob 2s infinite; cursor: pointer; }
+  .scroll-hint:hover { color: var(--mint); }
+  .scroll-hint:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; border-radius: 6px; }
   @keyframes bob { 50% { transform: translateY(6px); } }
 
   section { padding: 110px 0; }
@@ -225,6 +227,24 @@
     .hero .photo { width: 190px; }
     .shots.three { grid-template-columns: 1fr 1fr 1fr; }
   }
+
+  /* Portfolio mode links */
+  .mode-switcher { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero > .mode-switcher { position: absolute; top: 24px; right: 24px; left: 24px; z-index: 5; justify-content: flex-end; }
+  .hero .mode-switcher .neon-btn { position: static; }
+  .casual-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 18px; border: 2px solid #faaa8d; border-radius: 999px; background: #201e1f; color: #feefdd; font: 700 13px "Space Mono", "Noto Sans KR", monospace; letter-spacing: .08em; transition: background .15s, color .15s, border-color .15s; white-space: nowrap; }
+  .casual-btn .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff4000; }
+  .casual-btn:hover { background: #faaa8d; color: #201e1f; border-color: #faaa8d; }
+  .casual-btn:focus-visible { outline: 3px solid #50b2c0; outline-offset: 3px; }
+  nav .mode-switcher { flex-wrap: nowrap; gap: 10px; }
+  nav .casual-btn { padding: 5px 12px; font-size: 12px; }
+  @media (max-width: 600px) {
+    .hero > .mode-switcher { top: 20px; right: 16px; left: 16px; gap: 10px; }
+    .hero .mode-switcher .neon-btn, .hero .casual-btn { font-size: 11px; padding: 8px 12px; }
+    nav .brand { font-size: 12px; }
+    nav .mode-switcher { gap: 8px; }
+    nav .mode-switcher a { font-size: 10px; padding: 5px 8px; }
+  }
 </style>
 </head>
 <body>
@@ -237,12 +257,14 @@
       <li><a href="#projects">PROJECT</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
-    <a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON</a>
+    <div class="mode-switcher" role="group" aria-label="포트폴리오 모드 선택"><a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON</a>
+    <a class="casual-btn" href="github_profile_seosuhyun.html" aria-label="캐주얼 모드로 전환"><span class="dot" aria-hidden="true"></span>CASUAL</a></div>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON MODE</a>
+  <div class="mode-switcher" role="group" aria-label="포트폴리오 모드 선택"><a class="neon-btn" href="neon.html" aria-label="네온 모드로 전환"><span class="dot" aria-hidden="true"></span>NEON MODE</a>
+    <a class="casual-btn" href="github_profile_seosuhyun.html" aria-label="캐주얼 모드로 전환"><span class="dot" aria-hidden="true"></span>CASUAL MODE</a></div>
   <div>
     <div class="photo reveal"><img src="assets/profile.jpg" alt="서수현 프로필 사진"></div>
     <h1 class="reveal">서수현 입니다</h1>
@@ -255,7 +277,7 @@
         <svg viewBox="0 0 16 16" aria-hidden="true" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub
       </a>
     </div>
-    <p class="scroll-hint">SCROLL ↓</p>
+    <a class="scroll-hint" href="#about" aria-label="다음 섹션 소개로 이동">SCROLL ↓</a>
   </div>
 </header>
 
