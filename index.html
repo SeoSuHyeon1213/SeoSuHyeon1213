@@ -148,6 +148,9 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
 .deep-tree .tkids{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;border-top:2px solid #6b5a9e;padding-top:14px}
 .deep-tree .tkids .tn{min-width:0;padding:8px 6px;font-size:12px}
 @media (max-width:760px){.deep-tree .tkids{grid-template-columns:repeat(2,minmax(0,1fr))}.deep-imgs.arrow{grid-template-columns:1fr}.deep-arrow{transform:rotate(90deg);justify-self:center;padding:0}.deep-flow .fh{display:none}.deep-flow .fr{grid-template-columns:1fr}.deep-flow .fr span{transform:rotate(90deg)}}
+.copy-btn{cursor:pointer;font-family:'Space Mono','Noto Sans KR',monospace}
+.copy-toast{position:fixed;left:50%;bottom:28px;z-index:80;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 18px;background:#050308;color:#3ff0b4;border:2px solid #3ff0b4;box-shadow:5px 5px 0 #ff2bd6;font:700 13px 'Space Mono','Noto Sans KR',monospace;transition:opacity .2s,transform .2s;max-width:calc(100vw - 32px);box-sizing:border-box;text-align:center;word-break:keep-all}
+.copy-toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
@@ -288,6 +291,14 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2ecff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg>
             YouTube
           </a>
+          <button type="button" class="win retro-btn lbtn copy-btn" data-copy="mneo1213@naver.com" data-label="이메일" aria-label="이메일 주소 mneo1213@naver.com 복사">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2ecff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+            mneo1213@naver.com <span aria-hidden="true" style="font-size:11px;opacity:.7">⧉ COPY</span>
+          </button>
+          <button type="button" class="win retro-btn lbtn copy-btn" data-copy="010-8449-5734" data-label="전화번호" aria-label="전화번호 010-8449-5734 복사">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2ecff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            010-8449-5734 <span aria-hidden="true" style="font-size:11px;opacity:.7">⧉ COPY</span>
+          </button>
           <a class="win retro-btn lbtn" href="#home" style="color:#050308;background:#ff2bd6">▲ TOP</a>
           <a class="win retro-btn lbtn" href="github_profile_seosuhyun.html" aria-label="Switch to casual mode">◌ CASUAL MODE</a>
         </div>
@@ -300,6 +311,8 @@ a{color:#4de8ff}a:hover{color:#ff6ad5}
     <span>© 2026 SEO SUHYEON</span>
   </footer>
 </div>
+
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite"></div>
 
 <!-- ========== DETAIL WINDOW ========== -->
 <div class="modal" id="modal">
@@ -711,6 +724,29 @@ document.addEventListener("click", function (e) {
 document.getElementById("dlgClose").onclick = closeDetail;
 modal.addEventListener("click", function (e) { if (e.target === modal) closeDetail(); });
 document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDetail(); });
+// copy contact info
+var toast = document.getElementById("copyToast"), toastTimer;
+function showToast(msg) {
+  toast.textContent = msg; toast.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2000);
+}
+function legacyCopy(text) {
+  return new Promise(function (ok, fail) {
+    var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(t); t.select();
+    try { document.execCommand("copy") ? ok() : fail(); } catch (e) { fail(e); } finally { t.remove(); }
+  });
+}
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(function () { return legacyCopy(text); });
+  return legacyCopy(text);
+}
+document.querySelectorAll("[data-copy]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    copyText(b.dataset.copy).then(function () { showToast("✓ " + b.dataset.label + " 복사 완료: " + b.dataset.copy); },
+      function () { showToast("복사에 실패했습니다. 직접 선택해 복사해 주세요."); });
+  });
+});
 </script>
 </body>
 </html>

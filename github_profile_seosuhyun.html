@@ -235,6 +235,10 @@
     .default-mode-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--peach); border-radius: 999px; color: var(--peach); background: var(--panel); font: 700 12px var(--mono); letter-spacing: .04em; }
     .default-mode-btn:hover { background: var(--peach); color: var(--panel); }
     .default-mode-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+    .copy-chip { cursor: pointer; line-height: inherit; }
+    .copy-chip:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+    .copy-toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; transform: translate(-50%, 16px); opacity: 0; pointer-events: none; padding: 11px 18px; border-radius: 999px; background: var(--panel); color: var(--teal); border: 1px solid var(--teal); font: 700 13px var(--mono); transition: opacity .2s, transform .2s; max-width: calc(100vw - 32px); box-sizing: border-box; text-align: center; }
+    .copy-toast.show { opacity: 1; transform: translate(-50%, 0); }
 </style>
 </head>
 <body>
@@ -320,6 +324,8 @@
       <a class="sns-chip" href="https://github.com/SeoSuHyeon1213" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i> GitHub</a>
       <a class="sns-chip" href="https://www.youtube.com/@%EC%9D%8E%EC%8A%88%EC%9D%8E%EC%8A%88-v2f" target="_blank" rel="noopener"><i class="ti ti-brand-youtube"></i> YouTube</a>
       <a class="sns-chip" href="#projects" style="border-color:rgba(80,178,192,0.35);color:#50B2C0;"><i class="ti ti-world"></i> 프로젝트 둘러보기</a>
+      <button type="button" class="sns-chip copy-chip" data-copy="mneo1213@naver.com" data-label="이메일" aria-label="이메일 주소 mneo1213@naver.com 복사" style="border-color:rgba(80,178,192,0.35);color:#50B2C0;"><i class="ti ti-mail"></i> mneo1213@naver.com <i class="ti ti-copy" aria-hidden="true"></i></button>
+      <button type="button" class="sns-chip copy-chip" data-copy="010-8449-5734" data-label="전화번호" aria-label="전화번호 010-8449-5734 복사" style="border-color:rgba(80,178,192,0.35);color:#50B2C0;"><i class="ti ti-phone"></i> 010-8449-5734 <i class="ti ti-copy" aria-hidden="true"></i></button>
     </div>
   </section>
 
@@ -935,6 +941,32 @@ document.getElementById("dlg-close").addEventListener("click", () => dlg.close()
 dlg.addEventListener("click", e => {
   const r = dlg.getBoundingClientRect();
   if (e.target === dlg && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) dlg.close();
+});
+</script>
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite"></div>
+<script>
+// copy contact info
+var toast = document.getElementById("copyToast"), toastTimer;
+function showToast(msg) {
+  toast.textContent = msg; toast.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2000);
+}
+function legacyCopy(text) {
+  return new Promise(function (ok, fail) {
+    var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(t); t.select();
+    try { document.execCommand("copy") ? ok() : fail(); } catch (e) { fail(e); } finally { t.remove(); }
+  });
+}
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).catch(function () { return legacyCopy(text); });
+  return legacyCopy(text);
+}
+document.querySelectorAll("[data-copy]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    copyText(b.dataset.copy).then(function () { showToast("✓ " + b.dataset.label + " 복사 완료: " + b.dataset.copy); },
+      function () { showToast("복사에 실패했습니다. 직접 선택해 복사해 주세요."); });
+  });
 });
 </script>
 </body>
